@@ -17,13 +17,23 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>扎堆</string>
+   <string comment="团队助手" extracomment="组队神器">团队助手</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="TA.qrc">
+    <normaloff>:/Logo/TA.png</normaloff>:/Logo/TA.png</iconset>
   </property>
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
   </property>
   <property name="autoFillBackground">
    <bool>true</bool>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>128</width>
+    <height>128</height>
+   </size>
   </property>
   <property name="animated">
    <bool>true</bool>
@@ -1106,6 +1116,8 @@
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="TA.qrc"/>
+ </resources>
  <connections/>
 </ui>
