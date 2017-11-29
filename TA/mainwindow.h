@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtNetwork/QUdpSocket>
+#include <QtNetwork/QTcpSocket>
+#include <QtNetwork/QTcpServer>
 
 namespace Ui {
 class MainWindow;
@@ -15,8 +18,22 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void processPendingDatagrams();
+
+    void on_horizontalSlider_TaskPercent_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
+
+    qint16 m_port;
+    QUdpSocket *m_pUdpSocket;
+    QTcpSocket *m_pTcpSocket;
+    QTcpServer *m_pTcpServer;
+    QString fileName;
+    QString getIP();
+
+
 };
 
 #endif // MAINWINDOW_H

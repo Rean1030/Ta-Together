@@ -129,8 +129,8 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(800, 630);
-        MainWindow->setMinimumSize(QSize(800, 630));
+        MainWindow->resize(900, 630);
+        MainWindow->setMinimumSize(QSize(900, 630));
         QIcon icon;
         icon.addFile(QStringLiteral(":/Logo/TA.ico"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
@@ -144,7 +144,7 @@ public:
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         pushButton_AddProject = new QPushButton(centralwidget);
         pushButton_AddProject->setObjectName(QStringLiteral("pushButton_AddProject"));
-        pushButton_AddProject->setMaximumSize(QSize(75, 25));
+        pushButton_AddProject->setMaximumSize(QSize(100, 25));
 
         gridLayout->addWidget(pushButton_AddProject, 1, 6, 1, 1);
 
@@ -174,7 +174,7 @@ public:
 
         label_TaskName = new QLabel(groupBox_MyTask);
         label_TaskName->setObjectName(QStringLiteral("label_TaskName"));
-        label_TaskName->setMaximumSize(QSize(55, 16777215));
+        label_TaskName->setMaximumSize(QSize(120, 16777215));
         label_TaskName->setAutoFillBackground(true);
 
         gridLayout_2->addWidget(label_TaskName, 0, 0, 1, 1);
@@ -186,60 +186,80 @@ public:
 
         label_PlannedTime = new QLabel(groupBox_MyTask);
         label_PlannedTime->setObjectName(QStringLiteral("label_PlannedTime"));
-        label_PlannedTime->setMaximumSize(QSize(80, 16777215));
+        label_PlannedTime->setMaximumSize(QSize(120, 16777215));
         label_PlannedTime->setAutoFillBackground(true);
 
         gridLayout_2->addWidget(label_PlannedTime, 0, 6, 1, 1);
 
         lineEdit_PlannedTime = new QLineEdit(groupBox_MyTask);
         lineEdit_PlannedTime->setObjectName(QStringLiteral("lineEdit_PlannedTime"));
-        lineEdit_PlannedTime->setMaximumSize(QSize(50, 16777215));
+        lineEdit_PlannedTime->setMaximumSize(QSize(100, 16777215));
+        lineEdit_PlannedTime->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_2->addWidget(lineEdit_PlannedTime, 0, 7, 1, 1);
 
         label_StartTime = new QLabel(groupBox_MyTask);
         label_StartTime->setObjectName(QStringLiteral("label_StartTime"));
-        label_StartTime->setMaximumSize(QSize(55, 16777215));
+        label_StartTime->setMaximumSize(QSize(120, 16777215));
         label_StartTime->setAutoFillBackground(true);
 
         gridLayout_2->addWidget(label_StartTime, 1, 0, 1, 1);
 
         label_EndTime = new QLabel(groupBox_MyTask);
         label_EndTime->setObjectName(QStringLiteral("label_EndTime"));
-        label_EndTime->setMaximumSize(QSize(55, 16777215));
+        label_EndTime->setMaximumSize(QSize(120, 16777215));
+        label_EndTime->setAutoFillBackground(true);
 
         gridLayout_2->addWidget(label_EndTime, 1, 3, 1, 1);
 
         dateTimeEdit_EndTime = new QDateTimeEdit(groupBox_MyTask);
         dateTimeEdit_EndTime->setObjectName(QStringLiteral("dateTimeEdit_EndTime"));
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(dateTimeEdit_EndTime->sizePolicy().hasHeightForWidth());
+        dateTimeEdit_EndTime->setSizePolicy(sizePolicy1);
         dateTimeEdit_EndTime->setAutoFillBackground(true);
+        dateTimeEdit_EndTime->setDateTime(QDateTime(QDate(2017, 11, 10), QTime(16, 22, 0)));
         dateTimeEdit_EndTime->setCalendarPopup(true);
 
         gridLayout_2->addWidget(dateTimeEdit_EndTime, 1, 4, 1, 2);
 
         comboBox_TimeUnit = new QComboBox(groupBox_MyTask);
         comboBox_TimeUnit->setObjectName(QStringLiteral("comboBox_TimeUnit"));
-        comboBox_TimeUnit->setMaximumSize(QSize(40, 16777215));
+        comboBox_TimeUnit->setMaximumSize(QSize(50, 16777215));
 
         gridLayout_2->addWidget(comboBox_TimeUnit, 0, 8, 1, 1);
 
         dateTimeEdit_StartTime = new QDateTimeEdit(groupBox_MyTask);
         dateTimeEdit_StartTime->setObjectName(QStringLiteral("dateTimeEdit_StartTime"));
+        sizePolicy1.setHeightForWidth(dateTimeEdit_StartTime->sizePolicy().hasHeightForWidth());
+        dateTimeEdit_StartTime->setSizePolicy(sizePolicy1);
         dateTimeEdit_StartTime->setAutoFillBackground(true);
+        dateTimeEdit_StartTime->setDateTime(QDateTime(QDate(2017, 11, 15), QTime(12, 7, 1)));
         dateTimeEdit_StartTime->setCalendarPopup(true);
 
         gridLayout_2->addWidget(dateTimeEdit_StartTime, 1, 2, 1, 1);
 
         label_UsedTime = new QLabel(groupBox_MyTask);
         label_UsedTime->setObjectName(QStringLiteral("label_UsedTime"));
-        label_UsedTime->setMaximumSize(QSize(80, 16777215));
+        label_UsedTime->setMaximumSize(QSize(120, 16777215));
         label_UsedTime->setAutoFillBackground(true);
 
         gridLayout_2->addWidget(label_UsedTime, 1, 6, 1, 1);
 
         lcdNumber_UsedTime = new QLCDNumber(groupBox_MyTask);
         lcdNumber_UsedTime->setObjectName(QStringLiteral("lcdNumber_UsedTime"));
+        QFont font;
+        font.setPointSize(9);
+        font.setBold(false);
+        font.setWeight(50);
+        lcdNumber_UsedTime->setFont(font);
         lcdNumber_UsedTime->setAutoFillBackground(true);
+        lcdNumber_UsedTime->setFrameShape(QFrame::Box);
+        lcdNumber_UsedTime->setFrameShadow(QFrame::Raised);
+        lcdNumber_UsedTime->setLineWidth(0);
+        lcdNumber_UsedTime->setMidLineWidth(0);
         lcdNumber_UsedTime->setSmallDecimalPoint(false);
         lcdNumber_UsedTime->setSegmentStyle(QLCDNumber::Flat);
         lcdNumber_UsedTime->setProperty("value", QVariant(5.5));
@@ -248,7 +268,7 @@ public:
 
         label_TaskPercent = new QLabel(groupBox_MyTask);
         label_TaskPercent->setObjectName(QStringLiteral("label_TaskPercent"));
-        label_TaskPercent->setMaximumSize(QSize(55, 16777215));
+        label_TaskPercent->setMaximumSize(QSize(120, 16777215));
         label_TaskPercent->setAutoFillBackground(true);
 
         gridLayout_2->addWidget(label_TaskPercent, 2, 0, 1, 1);
@@ -257,7 +277,12 @@ public:
         horizontalSlider_TaskPercent->setObjectName(QStringLiteral("horizontalSlider_TaskPercent"));
         horizontalSlider_TaskPercent->setCursor(QCursor(Qt::PointingHandCursor));
         horizontalSlider_TaskPercent->setAutoFillBackground(true);
+        horizontalSlider_TaskPercent->setMaximum(100);
+        horizontalSlider_TaskPercent->setValue(55);
+        horizontalSlider_TaskPercent->setTracking(true);
         horizontalSlider_TaskPercent->setOrientation(Qt::Horizontal);
+        horizontalSlider_TaskPercent->setInvertedAppearance(false);
+        horizontalSlider_TaskPercent->setInvertedControls(false);
         horizontalSlider_TaskPercent->setTickPosition(QSlider::TicksAbove);
         horizontalSlider_TaskPercent->setTickInterval(5);
 
@@ -266,11 +291,11 @@ public:
         label_PercentNum = new QLabel(groupBox_MyTask);
         label_PercentNum->setObjectName(QStringLiteral("label_PercentNum"));
         label_PercentNum->setMaximumSize(QSize(80, 16777215));
-        QFont font;
-        font.setPointSize(11);
-        font.setBold(true);
-        font.setWeight(75);
-        label_PercentNum->setFont(font);
+        QFont font1;
+        font1.setPointSize(11);
+        font1.setBold(true);
+        font1.setWeight(75);
+        label_PercentNum->setFont(font1);
         label_PercentNum->setAutoFillBackground(true);
         label_PercentNum->setAlignment(Qt::AlignCenter);
 
@@ -278,7 +303,7 @@ public:
 
         label_TimeFix = new QLabel(groupBox_MyTask);
         label_TimeFix->setObjectName(QStringLiteral("label_TimeFix"));
-        label_TimeFix->setMaximumSize(QSize(80, 16777215));
+        label_TimeFix->setMaximumSize(QSize(120, 16777215));
         label_TimeFix->setAutoFillBackground(true);
 
         gridLayout_2->addWidget(label_TimeFix, 2, 6, 1, 1);
@@ -292,55 +317,55 @@ public:
 
         comboBox_TaskStage = new QComboBox(groupBox_MyTask);
         comboBox_TaskStage->setObjectName(QStringLiteral("comboBox_TaskStage"));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Fixed);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(comboBox_TaskStage->sizePolicy().hasHeightForWidth());
-        comboBox_TaskStage->setSizePolicy(sizePolicy1);
+        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(comboBox_TaskStage->sizePolicy().hasHeightForWidth());
+        comboBox_TaskStage->setSizePolicy(sizePolicy2);
 
         gridLayout_2->addWidget(comboBox_TaskStage, 4, 2, 1, 1);
 
         label_Priority = new QLabel(groupBox_MyTask);
         label_Priority->setObjectName(QStringLiteral("label_Priority"));
-        label_Priority->setMaximumSize(QSize(55, 16777215));
+        label_Priority->setMaximumSize(QSize(120, 16777215));
         label_Priority->setAutoFillBackground(true);
 
         gridLayout_2->addWidget(label_Priority, 4, 3, 1, 1);
 
         comboBox_Priority = new QComboBox(groupBox_MyTask);
         comboBox_Priority->setObjectName(QStringLiteral("comboBox_Priority"));
-        sizePolicy1.setHeightForWidth(comboBox_Priority->sizePolicy().hasHeightForWidth());
-        comboBox_Priority->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(comboBox_Priority->sizePolicy().hasHeightForWidth());
+        comboBox_Priority->setSizePolicy(sizePolicy2);
 
         gridLayout_2->addWidget(comboBox_Priority, 4, 4, 1, 1);
 
         comboBox_Difficulty = new QComboBox(groupBox_MyTask);
         comboBox_Difficulty->setObjectName(QStringLiteral("comboBox_Difficulty"));
-        QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Fixed);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(comboBox_Difficulty->sizePolicy().hasHeightForWidth());
-        comboBox_Difficulty->setSizePolicy(sizePolicy2);
+        sizePolicy1.setHeightForWidth(comboBox_Difficulty->sizePolicy().hasHeightForWidth());
+        comboBox_Difficulty->setSizePolicy(sizePolicy1);
+        comboBox_Difficulty->setMaximumSize(QSize(16777215, 16777215));
 
         gridLayout_2->addWidget(comboBox_Difficulty, 4, 6, 1, 1);
 
         label_Difficulty = new QLabel(groupBox_MyTask);
         label_Difficulty->setObjectName(QStringLiteral("label_Difficulty"));
-        label_Difficulty->setMaximumSize(QSize(55, 16777215));
+        label_Difficulty->setMaximumSize(QSize(120, 16777215));
         label_Difficulty->setAutoFillBackground(true);
 
         gridLayout_2->addWidget(label_Difficulty, 4, 5, 1, 1);
 
         label_TaskStage = new QLabel(groupBox_MyTask);
         label_TaskStage->setObjectName(QStringLiteral("label_TaskStage"));
-        label_TaskStage->setMaximumSize(QSize(55, 16777215));
+        label_TaskStage->setMaximumSize(QSize(120, 16777215));
         label_TaskStage->setAutoFillBackground(true);
 
         gridLayout_2->addWidget(label_TaskStage, 4, 0, 1, 1);
 
         pushButton_Save = new QPushButton(groupBox_MyTask);
         pushButton_Save->setObjectName(QStringLiteral("pushButton_Save"));
-        pushButton_Save->setMaximumSize(QSize(90, 16777215));
+        sizePolicy1.setHeightForWidth(pushButton_Save->sizePolicy().hasHeightForWidth());
+        pushButton_Save->setSizePolicy(sizePolicy1);
+        pushButton_Save->setMaximumSize(QSize(200, 16777215));
 
         gridLayout_2->addWidget(pushButton_Save, 4, 7, 1, 2);
 
@@ -349,32 +374,32 @@ public:
 
         pushButton_AddMainTask = new QPushButton(tab_UserPage);
         pushButton_AddMainTask->setObjectName(QStringLiteral("pushButton_AddMainTask"));
-        sizePolicy1.setHeightForWidth(pushButton_AddMainTask->sizePolicy().hasHeightForWidth());
-        pushButton_AddMainTask->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(pushButton_AddMainTask->sizePolicy().hasHeightForWidth());
+        pushButton_AddMainTask->setSizePolicy(sizePolicy2);
         pushButton_AddMainTask->setMinimumSize(QSize(75, 0));
-        pushButton_AddMainTask->setMaximumSize(QSize(75, 25));
+        pushButton_AddMainTask->setMaximumSize(QSize(100, 25));
 
         gridLayout_UserPage->addWidget(pushButton_AddMainTask, 1, 0, 1, 1);
 
         pushButton_DeleteTask = new QPushButton(tab_UserPage);
         pushButton_DeleteTask->setObjectName(QStringLiteral("pushButton_DeleteTask"));
-        sizePolicy1.setHeightForWidth(pushButton_DeleteTask->sizePolicy().hasHeightForWidth());
-        pushButton_DeleteTask->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(pushButton_DeleteTask->sizePolicy().hasHeightForWidth());
+        pushButton_DeleteTask->setSizePolicy(sizePolicy2);
         pushButton_DeleteTask->setMinimumSize(QSize(25, 0));
         pushButton_DeleteTask->setMaximumSize(QSize(500, 25));
-        QFont font1;
-        font1.setBold(false);
-        font1.setWeight(50);
-        pushButton_DeleteTask->setFont(font1);
+        QFont font2;
+        font2.setBold(false);
+        font2.setWeight(50);
+        pushButton_DeleteTask->setFont(font2);
 
         gridLayout_UserPage->addWidget(pushButton_DeleteTask, 1, 1, 1, 1);
 
         pushButton_AddSubTask = new QPushButton(tab_UserPage);
         pushButton_AddSubTask->setObjectName(QStringLiteral("pushButton_AddSubTask"));
-        sizePolicy1.setHeightForWidth(pushButton_AddSubTask->sizePolicy().hasHeightForWidth());
-        pushButton_AddSubTask->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(pushButton_AddSubTask->sizePolicy().hasHeightForWidth());
+        pushButton_AddSubTask->setSizePolicy(sizePolicy2);
         pushButton_AddSubTask->setMinimumSize(QSize(75, 0));
-        pushButton_AddSubTask->setMaximumSize(QSize(75, 25));
+        pushButton_AddSubTask->setMaximumSize(QSize(100, 25));
 
         gridLayout_UserPage->addWidget(pushButton_AddSubTask, 1, 2, 1, 1);
 
@@ -387,8 +412,8 @@ public:
 
         lineEdit_UserName = new QLineEdit(tab_UserPage);
         lineEdit_UserName->setObjectName(QStringLiteral("lineEdit_UserName"));
-        sizePolicy1.setHeightForWidth(lineEdit_UserName->sizePolicy().hasHeightForWidth());
-        lineEdit_UserName->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(lineEdit_UserName->sizePolicy().hasHeightForWidth());
+        lineEdit_UserName->setSizePolicy(sizePolicy2);
         lineEdit_UserName->setMinimumSize(QSize(0, 0));
         lineEdit_UserName->setMaximumSize(QSize(16777215, 25));
 
@@ -396,9 +421,9 @@ public:
 
         pushButton_SetUserName = new QPushButton(tab_UserPage);
         pushButton_SetUserName->setObjectName(QStringLiteral("pushButton_SetUserName"));
-        sizePolicy1.setHeightForWidth(pushButton_SetUserName->sizePolicy().hasHeightForWidth());
-        pushButton_SetUserName->setSizePolicy(sizePolicy1);
-        pushButton_SetUserName->setMaximumSize(QSize(75, 25));
+        sizePolicy2.setHeightForWidth(pushButton_SetUserName->sizePolicy().hasHeightForWidth());
+        pushButton_SetUserName->setSizePolicy(sizePolicy2);
+        pushButton_SetUserName->setMaximumSize(QSize(100, 25));
 
         gridLayout_UserPage->addWidget(pushButton_SetUserName, 3, 2, 1, 1);
 
@@ -409,7 +434,7 @@ public:
 
         dateEdit_LogDate = new QDateEdit(tab_UserPage);
         dateEdit_LogDate->setObjectName(QStringLiteral("dateEdit_LogDate"));
-        dateEdit_LogDate->setMaximumSize(QSize(90, 16777215));
+        dateEdit_LogDate->setMaximumSize(QSize(120, 16777215));
         dateEdit_LogDate->setAutoFillBackground(true);
         dateEdit_LogDate->setAlignment(Qt::AlignCenter);
         dateEdit_LogDate->setButtonSymbols(QAbstractSpinBox::UpDownArrows);
@@ -421,8 +446,8 @@ public:
 
         comboBox_UserRole = new QComboBox(tab_UserPage);
         comboBox_UserRole->setObjectName(QStringLiteral("comboBox_UserRole"));
-        sizePolicy1.setHeightForWidth(comboBox_UserRole->sizePolicy().hasHeightForWidth());
-        comboBox_UserRole->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(comboBox_UserRole->sizePolicy().hasHeightForWidth());
+        comboBox_UserRole->setSizePolicy(sizePolicy2);
         comboBox_UserRole->setMinimumSize(QSize(0, 0));
         comboBox_UserRole->setMaximumSize(QSize(16777215, 25));
         comboBox_UserRole->setEditable(true);
@@ -431,15 +456,15 @@ public:
 
         pushButton_SetUserRole = new QPushButton(tab_UserPage);
         pushButton_SetUserRole->setObjectName(QStringLiteral("pushButton_SetUserRole"));
-        sizePolicy1.setHeightForWidth(pushButton_SetUserRole->sizePolicy().hasHeightForWidth());
-        pushButton_SetUserRole->setSizePolicy(sizePolicy1);
-        pushButton_SetUserRole->setMaximumSize(QSize(75, 25));
+        sizePolicy2.setHeightForWidth(pushButton_SetUserRole->sizePolicy().hasHeightForWidth());
+        pushButton_SetUserRole->setSizePolicy(sizePolicy2);
+        pushButton_SetUserRole->setMaximumSize(QSize(100, 25));
 
         gridLayout_UserPage->addWidget(pushButton_SetUserRole, 4, 2, 1, 1);
 
         pushButton_TaskLog = new QPushButton(tab_UserPage);
         pushButton_TaskLog->setObjectName(QStringLiteral("pushButton_TaskLog"));
-        pushButton_TaskLog->setMaximumSize(QSize(90, 25));
+        pushButton_TaskLog->setMaximumSize(QSize(120, 25));
 
         gridLayout_UserPage->addWidget(pushButton_TaskLog, 4, 4, 1, 1);
 
@@ -502,14 +527,14 @@ public:
         pushButton_ExportCurrent = new QPushButton(tab_TeamPage);
         pushButton_ExportCurrent->setObjectName(QStringLiteral("pushButton_ExportCurrent"));
         pushButton_ExportCurrent->setMinimumSize(QSize(75, 25));
-        pushButton_ExportCurrent->setMaximumSize(QSize(75, 25));
+        pushButton_ExportCurrent->setMaximumSize(QSize(100, 25));
 
         gridLayout_TeamPage->addWidget(pushButton_ExportCurrent, 1, 0, 1, 1);
 
         pushButton_ExportAll = new QPushButton(tab_TeamPage);
         pushButton_ExportAll->setObjectName(QStringLiteral("pushButton_ExportAll"));
         pushButton_ExportAll->setMinimumSize(QSize(75, 25));
-        pushButton_ExportAll->setMaximumSize(QSize(75, 25));
+        pushButton_ExportAll->setMaximumSize(QSize(100, 25));
 
         gridLayout_TeamPage->addWidget(pushButton_ExportAll, 1, 1, 1, 1);
 
@@ -545,11 +570,11 @@ public:
         gridLayout_TaskOverview->setObjectName(QStringLiteral("gridLayout_TaskOverview"));
         label_TeamTaskLog = new QLabel(tab_TaskOverview);
         label_TeamTaskLog->setObjectName(QStringLiteral("label_TeamTaskLog"));
-        QFont font2;
-        font2.setPointSize(14);
-        font2.setBold(true);
-        font2.setWeight(75);
-        label_TeamTaskLog->setFont(font2);
+        QFont font3;
+        font3.setPointSize(14);
+        font3.setBold(true);
+        font3.setWeight(75);
+        label_TeamTaskLog->setFont(font3);
         label_TeamTaskLog->setAutoFillBackground(true);
         label_TeamTaskLog->setAlignment(Qt::AlignCenter);
         label_TeamTaskLog->setWordWrap(true);
@@ -647,11 +672,11 @@ public:
 
         label_Path = new QLabel(tab_Files);
         label_Path->setObjectName(QStringLiteral("label_Path"));
-        QFont font3;
-        font3.setPointSize(11);
-        font3.setBold(false);
-        font3.setWeight(50);
-        label_Path->setFont(font3);
+        QFont font4;
+        font4.setPointSize(11);
+        font4.setBold(false);
+        font4.setWeight(50);
+        label_Path->setFont(font4);
         label_Path->setAutoFillBackground(true);
 
         gridLayout_9->addWidget(label_Path, 1, 0, 1, 1);
@@ -687,27 +712,27 @@ public:
 
         label_CurrentProject = new QLabel(centralwidget);
         label_CurrentProject->setObjectName(QStringLiteral("label_CurrentProject"));
-        label_CurrentProject->setMaximumSize(QSize(55, 25));
+        label_CurrentProject->setMaximumSize(QSize(120, 25));
 
         gridLayout->addWidget(label_CurrentProject, 1, 3, 1, 1);
 
         comboBox_ProjectName = new QComboBox(centralwidget);
         comboBox_ProjectName->setObjectName(QStringLiteral("comboBox_ProjectName"));
-        sizePolicy1.setHeightForWidth(comboBox_ProjectName->sizePolicy().hasHeightForWidth());
-        comboBox_ProjectName->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(comboBox_ProjectName->sizePolicy().hasHeightForWidth());
+        comboBox_ProjectName->setSizePolicy(sizePolicy2);
         comboBox_ProjectName->setMinimumSize(QSize(450, 25));
 
         gridLayout->addWidget(comboBox_ProjectName, 1, 4, 1, 1);
 
         pushButton_CreateProject = new QPushButton(centralwidget);
         pushButton_CreateProject->setObjectName(QStringLiteral("pushButton_CreateProject"));
-        pushButton_CreateProject->setMaximumSize(QSize(75, 25));
+        pushButton_CreateProject->setMaximumSize(QSize(100, 25));
 
         gridLayout->addWidget(pushButton_CreateProject, 1, 7, 1, 1);
 
         pushButton_DeleteProject = new QPushButton(centralwidget);
         pushButton_DeleteProject->setObjectName(QStringLiteral("pushButton_DeleteProject"));
-        pushButton_DeleteProject->setMaximumSize(QSize(75, 25));
+        pushButton_DeleteProject->setMaximumSize(QSize(100, 25));
 
         gridLayout->addWidget(pushButton_DeleteProject, 1, 8, 1, 1);
 
@@ -715,7 +740,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(4);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -730,10 +755,11 @@ public:
         textEdit_TaskDetails->setPlaceholderText(QApplication::translate("MainWindow", "\350\257\267\350\276\223\345\205\245\344\273\273\345\212\241\350\257\246\346\203\205...", Q_NULLPTR));
         label_TaskName->setText(QApplication::translate("MainWindow", "\344\273\273\345\212\241\345\220\215\347\247\260:", Q_NULLPTR));
         lineEdit_TaskName->setText(QApplication::translate("MainWindow", "\351\241\271\347\233\256A", Q_NULLPTR));
-        label_PlannedTime->setText(QApplication::translate("MainWindow", "\351\242\204\344\274\260\344\273\273\345\212\241\347\224\250\346\227\266:", Q_NULLPTR));
+        label_PlannedTime->setText(QApplication::translate("MainWindow", "\344\273\273\345\212\241\351\242\204\344\274\260\346\227\266:", Q_NULLPTR));
         lineEdit_PlannedTime->setText(QApplication::translate("MainWindow", "5", Q_NULLPTR));
         label_StartTime->setText(QApplication::translate("MainWindow", "\345\274\200\345\247\213\346\227\266\351\227\264:", Q_NULLPTR));
         label_EndTime->setText(QApplication::translate("MainWindow", "\347\273\223\346\235\237\346\227\266\351\227\264:", Q_NULLPTR));
+        dateTimeEdit_EndTime->setDisplayFormat(QApplication::translate("MainWindow", "yyyy/M/d-H", Q_NULLPTR));
         comboBox_TimeUnit->clear();
         comboBox_TimeUnit->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "\346\227\266", Q_NULLPTR)
@@ -742,10 +768,11 @@ public:
          << QApplication::translate("MainWindow", "\346\234\210", Q_NULLPTR)
          << QApplication::translate("MainWindow", "\345\210\206", Q_NULLPTR)
         );
-        label_UsedTime->setText(QApplication::translate("MainWindow", "\345\267\262\347\224\250\345\267\245\346\227\266\357\274\210H\357\274\211", Q_NULLPTR));
+        dateTimeEdit_StartTime->setDisplayFormat(QApplication::translate("MainWindow", "yyyy/M/d-H", Q_NULLPTR));
+        label_UsedTime->setText(QApplication::translate("MainWindow", "\345\267\262\347\224\250\345\267\245\346\227\266(H):", Q_NULLPTR));
         label_TaskPercent->setText(QApplication::translate("MainWindow", "\344\273\273\345\212\241\350\277\233\345\272\246:", Q_NULLPTR));
         label_PercentNum->setText(QApplication::translate("MainWindow", "55%", Q_NULLPTR));
-        label_TimeFix->setText(QApplication::translate("MainWindow", "\345\267\245\346\227\266\350\260\203\345\267\256\357\274\210H\357\274\211", Q_NULLPTR));
+        label_TimeFix->setText(QApplication::translate("MainWindow", "\345\267\245\346\227\266\350\260\203\345\267\256(H):", Q_NULLPTR));
         lineEdit_TimeFix->setText(QApplication::translate("MainWindow", "+0.5", Q_NULLPTR));
         comboBox_TaskStage->clear();
         comboBox_TaskStage->insertItems(0, QStringList()
@@ -783,7 +810,7 @@ public:
         pushButton_AddSubTask->setText(QApplication::translate("MainWindow", "\346\267\273\345\212\240\345\255\220\344\273\273\345\212\241", Q_NULLPTR));
         pushButton_SetUserName->setText(QApplication::translate("MainWindow", "\350\256\276\347\275\256\345\220\215\347\247\260", Q_NULLPTR));
         textEdit_UserTaskLog->setPlaceholderText(QApplication::translate("MainWindow", "\350\257\267\350\276\223\345\205\245\351\241\271\347\233\256\346\227\245\345\277\227...", Q_NULLPTR));
-        dateEdit_LogDate->setDisplayFormat(QApplication::translate("MainWindow", "yyyy-M-d", Q_NULLPTR));
+        dateEdit_LogDate->setDisplayFormat(QApplication::translate("MainWindow", "yyyy/M/d", Q_NULLPTR));
         comboBox_UserRole->clear();
         comboBox_UserRole->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "\347\240\224\345\217\221", Q_NULLPTR)
