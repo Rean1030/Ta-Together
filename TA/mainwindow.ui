@@ -62,7 +62,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_UserPage">
        <attribute name="title">
@@ -247,14 +247,33 @@
                 <bool>true</bool>
                </property>
                <property name="text">
-                <string>已用工时（H）</string>
+                <string>已用工时(H):</string>
                </property>
               </widget>
              </item>
              <item row="1" column="7" colspan="2">
               <widget class="QLCDNumber" name="lcdNumber_UsedTime">
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
                <property name="autoFillBackground">
                 <bool>true</bool>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::Box</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <property name="lineWidth">
+                <number>0</number>
+               </property>
+               <property name="midLineWidth">
+                <number>0</number>
                </property>
                <property name="smallDecimalPoint">
                 <bool>false</bool>
@@ -340,7 +359,7 @@
                 <bool>true</bool>
                </property>
                <property name="text">
-                <string>工时调差（H）</string>
+                <string>工时调差(H):</string>
                </property>
               </widget>
              </item>
@@ -1218,7 +1237,7 @@
      <widget class="QLabel" name="label_CurrentProject">
       <property name="maximumSize">
        <size>
-        <width>55</width>
+        <width>75</width>
         <height>25</height>
        </size>
       </property>
