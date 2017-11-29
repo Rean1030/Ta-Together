@@ -223,6 +223,7 @@ Makefile: TA.pro C:/Qt/Qt5.8.0/5.8/mingw53_32/mkspecs/win32-g++/qmake.conf C:/Qt
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/lib/qtmain.prl \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/lib/Qt5Widgets.prl \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/lib/Qt5Gui.prl \
+		C:/Qt/Qt5.8.0/5.8/mingw53_32/lib/Qt5Network.prl \
 		C:/Qt/Qt5.8.0/5.8/mingw53_32/lib/Qt5Core.prl
 	$(QMAKE) -o Makefile TA.pro -spec win32-g++
 C:/Qt/Qt5.8.0/5.8/mingw53_32/mkspecs/features/spec_pre.prf:
@@ -389,6 +390,7 @@ TA.pro:
 C:/Qt/Qt5.8.0/5.8/mingw53_32/lib/qtmain.prl:
 C:/Qt/Qt5.8.0/5.8/mingw53_32/lib/Qt5Widgets.prl:
 C:/Qt/Qt5.8.0/5.8/mingw53_32/lib/Qt5Gui.prl:
+C:/Qt/Qt5.8.0/5.8/mingw53_32/lib/Qt5Network.prl:
 C:/Qt/Qt5.8.0/5.8/mingw53_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile TA.pro -spec win32-g++

@@ -1,6 +1,6 @@
 #include <windows.h>
 
-IDI_ICON1	ICON	DISCARDABLE	"C:\\Users\\wangyl-l\\Desktop\\Ta-Together\\TA\\TA.ico"
+IDI_ICON1	ICON	DISCARDABLE	"D:\\TestProj\\Ta-Together\\TA\\TA.ico"
 
 VS_VERSION_INFO VERSIONINFO
 	FILEVERSION 0,0,0,0

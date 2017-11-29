@@ -20,13 +20,14 @@ public:
 
 private slots:
     void processPendingDatagrams();
+    void broadcastDatagram(QByteArray datagram);
 
     void on_horizontalSlider_TaskPercent_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;
 
-    qint16 m_port;
+    quint16 m_port;
     QUdpSocket *m_pUdpSocket;
     QTcpSocket *m_pTcpSocket;
     QTcpServer *m_pTcpServer;
