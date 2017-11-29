@@ -62,7 +62,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="tab_UserPage">
        <attribute name="title">
@@ -71,28 +71,6 @@
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout_UserPage" rowstretch="0,0,0,0,0" columnstretch="4,2,4,20,5">
-          <item row="0" column="0" colspan="3">
-           <widget class="QTreeView" name="treeView_MyTask">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>200</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="sizeIncrement">
-             <size>
-              <width>0</width>
-              <height>0</height>
-             </size>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="3" rowspan="2" colspan="2">
            <widget class="QGroupBox" name="groupBox_MyTask">
             <property name="sizePolicy">
@@ -138,7 +116,11 @@
               </widget>
              </item>
              <item row="0" column="2" colspan="4">
-              <widget class="QLineEdit" name="lineEdit_TaskName"/>
+              <widget class="QLineEdit" name="lineEdit_TaskName">
+               <property name="text">
+                <string>项目A</string>
+               </property>
+              </widget>
              </item>
              <item row="0" column="6">
               <widget class="QLabel" name="label_PlannedTime">
@@ -163,6 +145,9 @@
                  <width>50</width>
                  <height>16777215</height>
                 </size>
+               </property>
+               <property name="text">
+                <string>5</string>
                </property>
               </widget>
              </item>
@@ -363,6 +348,12 @@
               <widget class="QLineEdit" name="lineEdit_TimeFix">
                <property name="autoFillBackground">
                 <bool>true</bool>
+               </property>
+               <property name="text">
+                <string>+0.5</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                </property>
               </widget>
              </item>
@@ -794,6 +785,75 @@
             </property>
            </widget>
           </item>
+          <item row="0" column="0" colspan="3">
+           <widget class="QTreeWidget" name="treeWidget_MyTask">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="sizeIncrement">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="autoExpandDelay">
+             <number>-1</number>
+            </property>
+            <property name="rootIsDecorated">
+             <bool>true</bool>
+            </property>
+            <property name="itemsExpandable">
+             <bool>true</bool>
+            </property>
+            <property name="animated">
+             <bool>true</bool>
+            </property>
+            <column>
+             <property name="text">
+              <string>任务列表</string>
+             </property>
+            </column>
+            <item>
+             <property name="text">
+              <string>项目A</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>主任务B</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>子任务C</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>主任务D</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>子任务E</string>
+               </property>
+              </item>
+             </item>
+             <item>
+              <property name="text">
+               <string>主任务F</string>
+              </property>
+             </item>
+            </item>
+           </widget>
+          </item>
          </layout>
         </item>
        </layout>
@@ -811,16 +871,6 @@
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout_TeamPage" columnstretch="0,0,0">
-          <item row="0" column="0" colspan="2">
-           <widget class="QListView" name="listView_TeamTask">
-            <property name="maximumSize">
-             <size>
-              <width>150</width>
-              <height>16777215</height>
-             </size>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="2" rowspan="2">
            <widget class="QGroupBox" name="groupBox_TaskVeiw">
             <property name="title">
@@ -828,7 +878,11 @@
             </property>
             <layout class="QVBoxLayout" name="verticalLayout">
              <item>
-              <widget class="QTableView" name="tableView_UserTask"/>
+              <widget class="QTableWidget" name="tableWidget_UserTask">
+               <property name="editTriggers">
+                <set>QAbstractItemView::NoEditTriggers</set>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QProgressBar" name="progressBar_UserPercent">
@@ -881,6 +935,31 @@
             </property>
            </widget>
           </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QListWidget" name="listWidget_TeamTask">
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <item>
+             <property name="text">
+              <string>组员A</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>组员B</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>组员C</string>
+             </property>
+            </item>
+           </widget>
+          </item>
          </layout>
         </item>
        </layout>
@@ -891,7 +970,11 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_7">
         <item row="0" column="0">
-         <widget class="QTableView" name="tableView_TeamBoard"/>
+         <widget class="QTableWidget" name="tableWidget_TeamBoard">
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -902,14 +985,11 @@
        <layout class="QGridLayout" name="gridLayout_8">
         <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout_TaskOverview" columnstretch="1,50">
-          <item row="0" column="0" colspan="2">
-           <widget class="QTableView" name="tableView_TeamTask"/>
-          </item>
           <item row="1" column="0">
            <widget class="QLabel" name="label_TeamTaskLog">
             <property name="font">
              <font>
-              <pointsize>12</pointsize>
+              <pointsize>14</pointsize>
               <weight>75</weight>
               <bold>true</bold>
              </font>
@@ -973,6 +1053,13 @@
             </property>
            </widget>
           </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QTableWidget" name="tableWidget_TeamTask">
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
        </layout>
@@ -989,7 +1076,56 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_11">
            <item row="0" column="0">
-            <widget class="QListView" name="listView_ProjectFile"/>
+            <widget class="QTableWidget" name="tableWidget_ProjectFile">
+             <property name="editTriggers">
+              <set>QAbstractItemView::NoEditTriggers</set>
+             </property>
+             <row>
+              <property name="text">
+               <string>1</string>
+              </property>
+             </row>
+             <column>
+              <property name="text">
+               <string>文件</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>备注</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>作者</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>时间</string>
+              </property>
+             </column>
+             <item row="0" column="0">
+              <property name="text">
+               <string>文件A</string>
+              </property>
+             </item>
+             <item row="0" column="1">
+              <property name="text">
+               <string>需求文档B</string>
+              </property>
+             </item>
+             <item row="0" column="2">
+              <property name="text">
+               <string>组员C</string>
+              </property>
+             </item>
+             <item row="0" column="3">
+              <property name="text">
+               <string>2017.11.29</string>
+              </property>
+             </item>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -1001,7 +1137,23 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_10">
            <item row="0" column="0">
-            <widget class="QListView" name="listView_FileLog"/>
+            <widget class="QListWidget" name="listWidget_FileLog">
+             <item>
+              <property name="text">
+               <string>文件日志A</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>文件日志B</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>文件日志C</string>
+              </property>
+             </item>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -1024,7 +1176,11 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEdit_Path"/>
+         <widget class="QLineEdit" name="lineEdit_Path">
+          <property name="text">
+           <string>D:\File</string>
+          </property>
+         </widget>
         </item>
         <item row="1" column="2">
          <widget class="QPushButton" name="pushButton_SelectFile">

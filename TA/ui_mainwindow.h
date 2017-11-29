@@ -23,15 +23,15 @@
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
-#include <QtWidgets/QListView>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QTabWidget>
-#include <QtWidgets/QTableView>
+#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTextEdit>
-#include <QtWidgets/QTreeView>
+#include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -47,7 +47,6 @@ public:
     QWidget *tab_UserPage;
     QGridLayout *gridLayout_3;
     QGridLayout *gridLayout_UserPage;
-    QTreeView *treeView_MyTask;
     QGroupBox *groupBox_MyTask;
     QGridLayout *gridLayout_2;
     QTextEdit *textEdit_TaskDetails;
@@ -85,35 +84,36 @@ public:
     QComboBox *comboBox_UserRole;
     QPushButton *pushButton_SetUserRole;
     QPushButton *pushButton_TaskLog;
+    QTreeWidget *treeWidget_MyTask;
     QWidget *tab_TeamPage;
     QGridLayout *gridLayout_5;
     QGridLayout *gridLayout_TeamPage;
-    QListView *listView_TeamTask;
     QGroupBox *groupBox_TaskVeiw;
     QVBoxLayout *verticalLayout;
-    QTableView *tableView_UserTask;
+    QTableWidget *tableWidget_UserTask;
     QProgressBar *progressBar_UserPercent;
     QPushButton *pushButton_ExportCurrent;
     QPushButton *pushButton_ExportAll;
+    QListWidget *listWidget_TeamTask;
     QWidget *tab_TeamBoard;
     QGridLayout *gridLayout_7;
-    QTableView *tableView_TeamBoard;
+    QTableWidget *tableWidget_TeamBoard;
     QWidget *tab_TaskOverview;
     QGridLayout *gridLayout_8;
     QGridLayout *gridLayout_TaskOverview;
-    QTableView *tableView_TeamTask;
     QLabel *label_TeamTaskLog;
     QTextEdit *textEdit_TeamTaskLog;
     QLabel *label_TeamPercent;
     QProgressBar *progressBar_TeamPercent;
+    QTableWidget *tableWidget_TeamTask;
     QWidget *tab_Files;
     QGridLayout *gridLayout_9;
     QGroupBox *groupBox_ProjectFile;
     QGridLayout *gridLayout_11;
-    QListView *listView_ProjectFile;
+    QTableWidget *tableWidget_ProjectFile;
     QGroupBox *groupBox_FileLog;
     QGridLayout *gridLayout_10;
-    QListView *listView_FileLog;
+    QListWidget *listWidget_FileLog;
     QLabel *label_Path;
     QLineEdit *lineEdit_Path;
     QPushButton *pushButton_SelectFile;
@@ -157,20 +157,11 @@ public:
         gridLayout_3->setObjectName(QStringLiteral("gridLayout_3"));
         gridLayout_UserPage = new QGridLayout();
         gridLayout_UserPage->setObjectName(QStringLiteral("gridLayout_UserPage"));
-        treeView_MyTask = new QTreeView(tab_UserPage);
-        treeView_MyTask->setObjectName(QStringLiteral("treeView_MyTask"));
+        groupBox_MyTask = new QGroupBox(tab_UserPage);
+        groupBox_MyTask->setObjectName(QStringLiteral("groupBox_MyTask"));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(treeView_MyTask->sizePolicy().hasHeightForWidth());
-        treeView_MyTask->setSizePolicy(sizePolicy);
-        treeView_MyTask->setMinimumSize(QSize(200, 0));
-        treeView_MyTask->setSizeIncrement(QSize(0, 0));
-
-        gridLayout_UserPage->addWidget(treeView_MyTask, 0, 0, 1, 3);
-
-        groupBox_MyTask = new QGroupBox(tab_UserPage);
-        groupBox_MyTask->setObjectName(QStringLiteral("groupBox_MyTask"));
         sizePolicy.setHeightForWidth(groupBox_MyTask->sizePolicy().hasHeightForWidth());
         groupBox_MyTask->setSizePolicy(sizePolicy);
         groupBox_MyTask->setSizeIncrement(QSize(0, 0));
@@ -295,6 +286,7 @@ public:
         lineEdit_TimeFix = new QLineEdit(groupBox_MyTask);
         lineEdit_TimeFix->setObjectName(QStringLiteral("lineEdit_TimeFix"));
         lineEdit_TimeFix->setAutoFillBackground(true);
+        lineEdit_TimeFix->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         gridLayout_2->addWidget(lineEdit_TimeFix, 2, 7, 1, 2);
 
@@ -451,6 +443,25 @@ public:
 
         gridLayout_UserPage->addWidget(pushButton_TaskLog, 4, 4, 1, 1);
 
+        treeWidget_MyTask = new QTreeWidget(tab_UserPage);
+        QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem(treeWidget_MyTask);
+        QTreeWidgetItem *__qtreewidgetitem1 = new QTreeWidgetItem(__qtreewidgetitem);
+        new QTreeWidgetItem(__qtreewidgetitem1);
+        QTreeWidgetItem *__qtreewidgetitem2 = new QTreeWidgetItem(__qtreewidgetitem);
+        new QTreeWidgetItem(__qtreewidgetitem2);
+        new QTreeWidgetItem(__qtreewidgetitem);
+        treeWidget_MyTask->setObjectName(QStringLiteral("treeWidget_MyTask"));
+        sizePolicy.setHeightForWidth(treeWidget_MyTask->sizePolicy().hasHeightForWidth());
+        treeWidget_MyTask->setSizePolicy(sizePolicy);
+        treeWidget_MyTask->setMinimumSize(QSize(200, 0));
+        treeWidget_MyTask->setSizeIncrement(QSize(0, 0));
+        treeWidget_MyTask->setAutoExpandDelay(-1);
+        treeWidget_MyTask->setRootIsDecorated(true);
+        treeWidget_MyTask->setItemsExpandable(true);
+        treeWidget_MyTask->setAnimated(true);
+
+        gridLayout_UserPage->addWidget(treeWidget_MyTask, 0, 0, 1, 3);
+
         gridLayout_UserPage->setColumnStretch(0, 4);
         gridLayout_UserPage->setColumnStretch(1, 2);
         gridLayout_UserPage->setColumnStretch(2, 4);
@@ -468,20 +479,15 @@ public:
         gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
         gridLayout_TeamPage = new QGridLayout();
         gridLayout_TeamPage->setObjectName(QStringLiteral("gridLayout_TeamPage"));
-        listView_TeamTask = new QListView(tab_TeamPage);
-        listView_TeamTask->setObjectName(QStringLiteral("listView_TeamTask"));
-        listView_TeamTask->setMaximumSize(QSize(150, 16777215));
-
-        gridLayout_TeamPage->addWidget(listView_TeamTask, 0, 0, 1, 2);
-
         groupBox_TaskVeiw = new QGroupBox(tab_TeamPage);
         groupBox_TaskVeiw->setObjectName(QStringLiteral("groupBox_TaskVeiw"));
         verticalLayout = new QVBoxLayout(groupBox_TaskVeiw);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        tableView_UserTask = new QTableView(groupBox_TaskVeiw);
-        tableView_UserTask->setObjectName(QStringLiteral("tableView_UserTask"));
+        tableWidget_UserTask = new QTableWidget(groupBox_TaskVeiw);
+        tableWidget_UserTask->setObjectName(QStringLiteral("tableWidget_UserTask"));
+        tableWidget_UserTask->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-        verticalLayout->addWidget(tableView_UserTask);
+        verticalLayout->addWidget(tableWidget_UserTask);
 
         progressBar_UserPercent = new QProgressBar(groupBox_TaskVeiw);
         progressBar_UserPercent->setObjectName(QStringLiteral("progressBar_UserPercent"));
@@ -507,6 +513,15 @@ public:
 
         gridLayout_TeamPage->addWidget(pushButton_ExportAll, 1, 1, 1, 1);
 
+        listWidget_TeamTask = new QListWidget(tab_TeamPage);
+        new QListWidgetItem(listWidget_TeamTask);
+        new QListWidgetItem(listWidget_TeamTask);
+        new QListWidgetItem(listWidget_TeamTask);
+        listWidget_TeamTask->setObjectName(QStringLiteral("listWidget_TeamTask"));
+        listWidget_TeamTask->setMaximumSize(QSize(150, 16777215));
+
+        gridLayout_TeamPage->addWidget(listWidget_TeamTask, 0, 0, 1, 2);
+
 
         gridLayout_5->addLayout(gridLayout_TeamPage, 0, 0, 1, 1);
 
@@ -515,10 +530,11 @@ public:
         tab_TeamBoard->setObjectName(QStringLiteral("tab_TeamBoard"));
         gridLayout_7 = new QGridLayout(tab_TeamBoard);
         gridLayout_7->setObjectName(QStringLiteral("gridLayout_7"));
-        tableView_TeamBoard = new QTableView(tab_TeamBoard);
-        tableView_TeamBoard->setObjectName(QStringLiteral("tableView_TeamBoard"));
+        tableWidget_TeamBoard = new QTableWidget(tab_TeamBoard);
+        tableWidget_TeamBoard->setObjectName(QStringLiteral("tableWidget_TeamBoard"));
+        tableWidget_TeamBoard->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-        gridLayout_7->addWidget(tableView_TeamBoard, 0, 0, 1, 1);
+        gridLayout_7->addWidget(tableWidget_TeamBoard, 0, 0, 1, 1);
 
         tabWidget->addTab(tab_TeamBoard, QString());
         tab_TaskOverview = new QWidget();
@@ -527,15 +543,10 @@ public:
         gridLayout_8->setObjectName(QStringLiteral("gridLayout_8"));
         gridLayout_TaskOverview = new QGridLayout();
         gridLayout_TaskOverview->setObjectName(QStringLiteral("gridLayout_TaskOverview"));
-        tableView_TeamTask = new QTableView(tab_TaskOverview);
-        tableView_TeamTask->setObjectName(QStringLiteral("tableView_TeamTask"));
-
-        gridLayout_TaskOverview->addWidget(tableView_TeamTask, 0, 0, 1, 2);
-
         label_TeamTaskLog = new QLabel(tab_TaskOverview);
         label_TeamTaskLog->setObjectName(QStringLiteral("label_TeamTaskLog"));
         QFont font2;
-        font2.setPointSize(12);
+        font2.setPointSize(14);
         font2.setBold(true);
         font2.setWeight(75);
         label_TeamTaskLog->setFont(font2);
@@ -568,6 +579,12 @@ public:
 
         gridLayout_TaskOverview->addWidget(progressBar_TeamPercent, 2, 1, 1, 1);
 
+        tableWidget_TeamTask = new QTableWidget(tab_TaskOverview);
+        tableWidget_TeamTask->setObjectName(QStringLiteral("tableWidget_TeamTask"));
+        tableWidget_TeamTask->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+        gridLayout_TaskOverview->addWidget(tableWidget_TeamTask, 0, 0, 1, 2);
+
         gridLayout_TaskOverview->setColumnStretch(0, 1);
         gridLayout_TaskOverview->setColumnStretch(1, 50);
 
@@ -582,10 +599,33 @@ public:
         groupBox_ProjectFile->setObjectName(QStringLiteral("groupBox_ProjectFile"));
         gridLayout_11 = new QGridLayout(groupBox_ProjectFile);
         gridLayout_11->setObjectName(QStringLiteral("gridLayout_11"));
-        listView_ProjectFile = new QListView(groupBox_ProjectFile);
-        listView_ProjectFile->setObjectName(QStringLiteral("listView_ProjectFile"));
+        tableWidget_ProjectFile = new QTableWidget(groupBox_ProjectFile);
+        if (tableWidget_ProjectFile->columnCount() < 4)
+            tableWidget_ProjectFile->setColumnCount(4);
+        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        tableWidget_ProjectFile->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+        tableWidget_ProjectFile->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
+        tableWidget_ProjectFile->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
+        tableWidget_ProjectFile->setHorizontalHeaderItem(3, __qtablewidgetitem3);
+        if (tableWidget_ProjectFile->rowCount() < 1)
+            tableWidget_ProjectFile->setRowCount(1);
+        QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
+        tableWidget_ProjectFile->setVerticalHeaderItem(0, __qtablewidgetitem4);
+        QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
+        tableWidget_ProjectFile->setItem(0, 0, __qtablewidgetitem5);
+        QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
+        tableWidget_ProjectFile->setItem(0, 1, __qtablewidgetitem6);
+        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
+        tableWidget_ProjectFile->setItem(0, 2, __qtablewidgetitem7);
+        QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
+        tableWidget_ProjectFile->setItem(0, 3, __qtablewidgetitem8);
+        tableWidget_ProjectFile->setObjectName(QStringLiteral("tableWidget_ProjectFile"));
+        tableWidget_ProjectFile->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-        gridLayout_11->addWidget(listView_ProjectFile, 0, 0, 1, 1);
+        gridLayout_11->addWidget(tableWidget_ProjectFile, 0, 0, 1, 1);
 
 
         gridLayout_9->addWidget(groupBox_ProjectFile, 0, 0, 1, 3);
@@ -594,10 +634,13 @@ public:
         groupBox_FileLog->setObjectName(QStringLiteral("groupBox_FileLog"));
         gridLayout_10 = new QGridLayout(groupBox_FileLog);
         gridLayout_10->setObjectName(QStringLiteral("gridLayout_10"));
-        listView_FileLog = new QListView(groupBox_FileLog);
-        listView_FileLog->setObjectName(QStringLiteral("listView_FileLog"));
+        listWidget_FileLog = new QListWidget(groupBox_FileLog);
+        new QListWidgetItem(listWidget_FileLog);
+        new QListWidgetItem(listWidget_FileLog);
+        new QListWidgetItem(listWidget_FileLog);
+        listWidget_FileLog->setObjectName(QStringLiteral("listWidget_FileLog"));
 
-        gridLayout_10->addWidget(listView_FileLog, 0, 0, 1, 1);
+        gridLayout_10->addWidget(listWidget_FileLog, 0, 0, 1, 1);
 
 
         gridLayout_9->addWidget(groupBox_FileLog, 0, 3, 1, 3);
@@ -672,7 +715,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -686,7 +729,9 @@ public:
         textEdit_TaskDetails->setDocumentTitle(QApplication::translate("MainWindow", "\344\273\273\345\212\241\350\257\246\346\203\205", Q_NULLPTR));
         textEdit_TaskDetails->setPlaceholderText(QApplication::translate("MainWindow", "\350\257\267\350\276\223\345\205\245\344\273\273\345\212\241\350\257\246\346\203\205...", Q_NULLPTR));
         label_TaskName->setText(QApplication::translate("MainWindow", "\344\273\273\345\212\241\345\220\215\347\247\260:", Q_NULLPTR));
+        lineEdit_TaskName->setText(QApplication::translate("MainWindow", "\351\241\271\347\233\256A", Q_NULLPTR));
         label_PlannedTime->setText(QApplication::translate("MainWindow", "\351\242\204\344\274\260\344\273\273\345\212\241\347\224\250\346\227\266:", Q_NULLPTR));
+        lineEdit_PlannedTime->setText(QApplication::translate("MainWindow", "5", Q_NULLPTR));
         label_StartTime->setText(QApplication::translate("MainWindow", "\345\274\200\345\247\213\346\227\266\351\227\264:", Q_NULLPTR));
         label_EndTime->setText(QApplication::translate("MainWindow", "\347\273\223\346\235\237\346\227\266\351\227\264:", Q_NULLPTR));
         comboBox_TimeUnit->clear();
@@ -701,6 +746,7 @@ public:
         label_TaskPercent->setText(QApplication::translate("MainWindow", "\344\273\273\345\212\241\350\277\233\345\272\246:", Q_NULLPTR));
         label_PercentNum->setText(QApplication::translate("MainWindow", "55%", Q_NULLPTR));
         label_TimeFix->setText(QApplication::translate("MainWindow", "\345\267\245\346\227\266\350\260\203\345\267\256\357\274\210H\357\274\211", Q_NULLPTR));
+        lineEdit_TimeFix->setText(QApplication::translate("MainWindow", "+0.5", Q_NULLPTR));
         comboBox_TaskStage->clear();
         comboBox_TaskStage->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "\345\207\206\345\244\207\351\230\266\346\256\265", Q_NULLPTR)
@@ -747,10 +793,40 @@ public:
         );
         pushButton_SetUserRole->setText(QApplication::translate("MainWindow", "\350\256\276\347\275\256\350\247\222\350\211\262", Q_NULLPTR));
         pushButton_TaskLog->setText(QApplication::translate("MainWindow", "\350\256\260\345\275\225\344\273\273\345\212\241\346\227\245\345\277\227", Q_NULLPTR));
+        QTreeWidgetItem *___qtreewidgetitem = treeWidget_MyTask->headerItem();
+        ___qtreewidgetitem->setText(0, QApplication::translate("MainWindow", "\344\273\273\345\212\241\345\210\227\350\241\250", Q_NULLPTR));
+
+        const bool __sortingEnabled = treeWidget_MyTask->isSortingEnabled();
+        treeWidget_MyTask->setSortingEnabled(false);
+        QTreeWidgetItem *___qtreewidgetitem1 = treeWidget_MyTask->topLevelItem(0);
+        ___qtreewidgetitem1->setText(0, QApplication::translate("MainWindow", "\351\241\271\347\233\256A", Q_NULLPTR));
+        QTreeWidgetItem *___qtreewidgetitem2 = ___qtreewidgetitem1->child(0);
+        ___qtreewidgetitem2->setText(0, QApplication::translate("MainWindow", "\344\270\273\344\273\273\345\212\241B", Q_NULLPTR));
+        QTreeWidgetItem *___qtreewidgetitem3 = ___qtreewidgetitem2->child(0);
+        ___qtreewidgetitem3->setText(0, QApplication::translate("MainWindow", "\345\255\220\344\273\273\345\212\241C", Q_NULLPTR));
+        QTreeWidgetItem *___qtreewidgetitem4 = ___qtreewidgetitem1->child(1);
+        ___qtreewidgetitem4->setText(0, QApplication::translate("MainWindow", "\344\270\273\344\273\273\345\212\241D", Q_NULLPTR));
+        QTreeWidgetItem *___qtreewidgetitem5 = ___qtreewidgetitem4->child(0);
+        ___qtreewidgetitem5->setText(0, QApplication::translate("MainWindow", "\345\255\220\344\273\273\345\212\241E", Q_NULLPTR));
+        QTreeWidgetItem *___qtreewidgetitem6 = ___qtreewidgetitem1->child(2);
+        ___qtreewidgetitem6->setText(0, QApplication::translate("MainWindow", "\344\270\273\344\273\273\345\212\241F", Q_NULLPTR));
+        treeWidget_MyTask->setSortingEnabled(__sortingEnabled);
+
         tabWidget->setTabText(tabWidget->indexOf(tab_UserPage), QApplication::translate("MainWindow", "\346\210\221\347\232\204\344\273\273\345\212\241", Q_NULLPTR));
         groupBox_TaskVeiw->setTitle(QApplication::translate("MainWindow", "\344\273\273\345\212\241\351\242\204\350\247\210", Q_NULLPTR));
         pushButton_ExportCurrent->setText(QApplication::translate("MainWindow", "\345\257\274\345\207\272\345\275\223\345\211\215", Q_NULLPTR));
         pushButton_ExportAll->setText(QApplication::translate("MainWindow", "\345\257\274\345\207\272\345\205\250\351\203\250", Q_NULLPTR));
+
+        const bool __sortingEnabled1 = listWidget_TeamTask->isSortingEnabled();
+        listWidget_TeamTask->setSortingEnabled(false);
+        QListWidgetItem *___qlistwidgetitem = listWidget_TeamTask->item(0);
+        ___qlistwidgetitem->setText(QApplication::translate("MainWindow", "\347\273\204\345\221\230A", Q_NULLPTR));
+        QListWidgetItem *___qlistwidgetitem1 = listWidget_TeamTask->item(1);
+        ___qlistwidgetitem1->setText(QApplication::translate("MainWindow", "\347\273\204\345\221\230B", Q_NULLPTR));
+        QListWidgetItem *___qlistwidgetitem2 = listWidget_TeamTask->item(2);
+        ___qlistwidgetitem2->setText(QApplication::translate("MainWindow", "\347\273\204\345\221\230C", Q_NULLPTR));
+        listWidget_TeamTask->setSortingEnabled(__sortingEnabled1);
+
         tabWidget->setTabText(tabWidget->indexOf(tab_TeamPage), QApplication::translate("MainWindow", "\345\233\242\351\230\237\344\273\273\345\212\241", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_TeamBoard), QApplication::translate("MainWindow", "\345\233\242\351\230\237\347\234\213\346\235\277", Q_NULLPTR));
         label_TeamTaskLog->setText(QApplication::translate("MainWindow", "\344\273\273\345\212\241\346\227\245\345\277\227", Q_NULLPTR));
@@ -758,8 +834,43 @@ public:
         label_TeamPercent->setText(QApplication::translate("MainWindow", "\346\200\273\350\277\233\345\272\246:", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_TaskOverview), QApplication::translate("MainWindow", "\344\273\273\345\212\241\346\200\273\350\247\210", Q_NULLPTR));
         groupBox_ProjectFile->setTitle(QApplication::translate("MainWindow", "\351\241\271\347\233\256\346\226\207\344\273\266", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem = tableWidget_ProjectFile->horizontalHeaderItem(0);
+        ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "\346\226\207\344\273\266", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem1 = tableWidget_ProjectFile->horizontalHeaderItem(1);
+        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "\345\244\207\346\263\250", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem2 = tableWidget_ProjectFile->horizontalHeaderItem(2);
+        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "\344\275\234\350\200\205", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem3 = tableWidget_ProjectFile->horizontalHeaderItem(3);
+        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "\346\227\266\351\227\264", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem4 = tableWidget_ProjectFile->verticalHeaderItem(0);
+        ___qtablewidgetitem4->setText(QApplication::translate("MainWindow", "1", Q_NULLPTR));
+
+        const bool __sortingEnabled2 = tableWidget_ProjectFile->isSortingEnabled();
+        tableWidget_ProjectFile->setSortingEnabled(false);
+        QTableWidgetItem *___qtablewidgetitem5 = tableWidget_ProjectFile->item(0, 0);
+        ___qtablewidgetitem5->setText(QApplication::translate("MainWindow", "\346\226\207\344\273\266A", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem6 = tableWidget_ProjectFile->item(0, 1);
+        ___qtablewidgetitem6->setText(QApplication::translate("MainWindow", "\351\234\200\346\261\202\346\226\207\346\241\243B", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem7 = tableWidget_ProjectFile->item(0, 2);
+        ___qtablewidgetitem7->setText(QApplication::translate("MainWindow", "\347\273\204\345\221\230C", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem8 = tableWidget_ProjectFile->item(0, 3);
+        ___qtablewidgetitem8->setText(QApplication::translate("MainWindow", "2017.11.29", Q_NULLPTR));
+        tableWidget_ProjectFile->setSortingEnabled(__sortingEnabled2);
+
         groupBox_FileLog->setTitle(QApplication::translate("MainWindow", "\346\226\207\344\273\266\346\227\245\345\277\227", Q_NULLPTR));
+
+        const bool __sortingEnabled3 = listWidget_FileLog->isSortingEnabled();
+        listWidget_FileLog->setSortingEnabled(false);
+        QListWidgetItem *___qlistwidgetitem3 = listWidget_FileLog->item(0);
+        ___qlistwidgetitem3->setText(QApplication::translate("MainWindow", "\346\226\207\344\273\266\346\227\245\345\277\227A", Q_NULLPTR));
+        QListWidgetItem *___qlistwidgetitem4 = listWidget_FileLog->item(1);
+        ___qlistwidgetitem4->setText(QApplication::translate("MainWindow", "\346\226\207\344\273\266\346\227\245\345\277\227B", Q_NULLPTR));
+        QListWidgetItem *___qlistwidgetitem5 = listWidget_FileLog->item(2);
+        ___qlistwidgetitem5->setText(QApplication::translate("MainWindow", "\346\226\207\344\273\266\346\227\245\345\277\227C", Q_NULLPTR));
+        listWidget_FileLog->setSortingEnabled(__sortingEnabled3);
+
         label_Path->setText(QApplication::translate("MainWindow", "\346\226\207\344\273\266\350\267\257\345\276\204:", Q_NULLPTR));
+        lineEdit_Path->setText(QApplication::translate("MainWindow", "D:\\File", Q_NULLPTR));
         pushButton_SelectFile->setText(QApplication::translate("MainWindow", "\346\265\217\350\247\210", Q_NULLPTR));
         pushButton_CommitFile->setText(QApplication::translate("MainWindow", "\346\217\220\344\272\244\346\226\207\344\273\266", Q_NULLPTR));
         pushButton_GetFile->setText(QApplication::translate("MainWindow", "\350\216\267\345\217\226\346\226\207\344\273\266", Q_NULLPTR));

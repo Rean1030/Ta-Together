@@ -21,7 +21,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="TA.qrc">
-    <normaloff>:/Logo/TA.png</normaloff>:/Logo/TA.png</iconset>
+    <normaloff>:/Logo/TA.ico</normaloff>:/Logo/TA.ico</iconset>
   </property>
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
