@@ -10,7 +10,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = TA
 TEMPLATE = app
-RC_ICONS += TA.ico
 
 RC_ICONS += TA.ico
 
