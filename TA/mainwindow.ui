@@ -445,37 +445,22 @@
                </property>
                <item>
                 <property name="text">
-                 <string>准备阶段</string>
+                 <string>准备</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>开发阶段</string>
+                 <string>进行</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>开发自测</string>
+                 <string>后续</string>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>需求验证</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>测试阶段</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>完成发布</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>其他状态</string>
+                 <string>完成</string>
                 </property>
                </item>
               </widget>
@@ -823,22 +808,22 @@
             </property>
             <item>
              <property name="text">
-              <string>研发</string>
+              <string>1研发</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>产品</string>
+              <string>2产品</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>测试</string>
+              <string>3测试</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>其他</string>
+              <string>4其他</string>
              </property>
             </item>
            </widget>

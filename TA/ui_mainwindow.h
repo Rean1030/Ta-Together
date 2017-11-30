@@ -776,13 +776,10 @@ public:
         lineEdit_TimeFix->setText(QApplication::translate("MainWindow", "+0.5", Q_NULLPTR));
         comboBox_TaskStage->clear();
         comboBox_TaskStage->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "\345\207\206\345\244\207\351\230\266\346\256\265", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "\345\274\200\345\217\221\351\230\266\346\256\265", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "\345\274\200\345\217\221\350\207\252\346\265\213", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "\351\234\200\346\261\202\351\252\214\350\257\201", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "\346\265\213\350\257\225\351\230\266\346\256\265", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "\345\256\214\346\210\220\345\217\221\345\270\203", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "\345\205\266\344\273\226\347\212\266\346\200\201", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "\345\207\206\345\244\207", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "\350\277\233\350\241\214", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "\345\220\216\347\273\255", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "\345\256\214\346\210\220", Q_NULLPTR)
         );
         label_Priority->setText(QApplication::translate("MainWindow", "\344\274\230\345\205\210\347\272\247\345\210\253:", Q_NULLPTR));
         comboBox_Priority->clear();
@@ -813,10 +810,10 @@ public:
         dateEdit_LogDate->setDisplayFormat(QApplication::translate("MainWindow", "yyyy/M/d", Q_NULLPTR));
         comboBox_UserRole->clear();
         comboBox_UserRole->insertItems(0, QStringList()
-         << QApplication::translate("MainWindow", "\347\240\224\345\217\221", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "\344\272\247\345\223\201", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "\346\265\213\350\257\225", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "\345\205\266\344\273\226", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "1\347\240\224\345\217\221", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "2\344\272\247\345\223\201", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "3\346\265\213\350\257\225", Q_NULLPTR)
+         << QApplication::translate("MainWindow", "4\345\205\266\344\273\226", Q_NULLPTR)
         );
         pushButton_SetUserRole->setText(QApplication::translate("MainWindow", "\350\256\276\347\275\256\350\247\222\350\211\262", Q_NULLPTR));
         pushButton_TaskLog->setText(QApplication::translate("MainWindow", "\350\256\260\345\275\225\344\273\273\345\212\241\346\227\245\345\277\227", Q_NULLPTR));

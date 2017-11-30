@@ -2,9 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QtNetwork/QUdpSocket>
-#include <QtNetwork/QTcpSocket>
-#include <QtNetwork/QTcpServer>
+
+#include "netserver.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -19,21 +19,13 @@ public:
     ~MainWindow();
 
 private slots:
-    void processPendingDatagrams();
-    void broadcastDatagram(QByteArray datagram);
-
     void on_horizontalSlider_TaskPercent_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;
 
-    quint16 m_port;
-    QUdpSocket *m_pUdpSocket;
-    QTcpSocket *m_pTcpSocket;
-    QTcpServer *m_pTcpServer;
+    NetServer *m_pNetServer;
     QString fileName;
-    QString getIP();
-
 
 };
 

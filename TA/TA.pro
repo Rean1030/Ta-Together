@@ -26,9 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    netserver.cpp \
+    fileserver.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    netserver.h \
+    fileserver.h
 
 FORMS    += mainwindow.ui
 
