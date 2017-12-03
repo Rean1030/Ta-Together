@@ -1,0 +1,37 @@
+#ifndef FILESERVER_H
+#define FILESERVER_H
+
+#include <QObject>
+#include <QtCore>
+#include <QStandardPaths>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QFile>
+
+static QString c_sFile;
+
+class FileServer : public QObject
+{
+    Q_OBJECT
+
+public:
+    explicit FileServer(QObject *parent = 0);
+
+    bool readFile();
+    bool writeFile();
+
+    inline QJsonDocument getJsonDoc() {return m_oJsonDoc;}
+    inline serJsonDoc(QJsonDocument &jsonDoc) {m_oJsonDoc = jsonDoc;}
+
+
+signals:
+
+public slots:
+
+private:
+    QJsonDocument m_oJsonDoc;
+
+};
+
+#endif // FILESERVER_H

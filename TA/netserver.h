@@ -26,7 +26,9 @@ signals:
 
 private slots:
     void processPendingDatagrams();
-    qint64 broadcastDatagram(QByteArray datagram, QHostAddress dstAdress = QHostAddress::Broadcast, quint16 dstPort = c_port);
+    qint64 broadcastDatagram(QByteArray datagram,
+                             QHostAddress dstAdress = QHostAddress::Broadcast,
+                             quint16 dstPort = c_port);
 
 };
 

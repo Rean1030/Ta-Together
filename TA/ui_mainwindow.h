@@ -66,12 +66,12 @@ public:
     QLabel *label_PercentNum;
     QLabel *label_TimeFix;
     QLineEdit *lineEdit_TimeFix;
-    QComboBox *comboBox_TaskStage;
+    QComboBox *comboBox_TaskState;
     QLabel *label_Priority;
     QComboBox *comboBox_Priority;
     QComboBox *comboBox_Difficulty;
     QLabel *label_Difficulty;
-    QLabel *label_TaskStage;
+    QLabel *label_TaskState;
     QPushButton *pushButton_Save;
     QPushButton *pushButton_AddMainTask;
     QPushButton *pushButton_DeleteTask;
@@ -108,18 +108,19 @@ public:
     QTableWidget *tableWidget_TeamTask;
     QWidget *tab_Files;
     QGridLayout *gridLayout_9;
+    QPushButton *pushButton_CommitFile;
+    QLineEdit *lineEdit_Path;
+    QLabel *label_Path;
+    QPushButton *pushButton_OpenFile;
+    QPushButton *pushButton_UpdateFile;
     QGroupBox *groupBox_ProjectFile;
     QGridLayout *gridLayout_11;
     QTableWidget *tableWidget_ProjectFile;
     QGroupBox *groupBox_FileLog;
     QGridLayout *gridLayout_10;
     QListWidget *listWidget_FileLog;
-    QLabel *label_Path;
-    QLineEdit *lineEdit_Path;
     QPushButton *pushButton_SelectFile;
-    QPushButton *pushButton_CommitFile;
-    QPushButton *pushButton_GetFile;
-    QPushButton *pushButton_UpdateFile;
+    QPushButton *pushButton_DeleteFile;
     QLabel *label_CurrentProject;
     QComboBox *comboBox_ProjectName;
     QPushButton *pushButton_CreateProject;
@@ -181,6 +182,7 @@ public:
 
         lineEdit_TaskName = new QLineEdit(groupBox_MyTask);
         lineEdit_TaskName->setObjectName(QStringLiteral("lineEdit_TaskName"));
+        lineEdit_TaskName->setClearButtonEnabled(true);
 
         gridLayout_2->addWidget(lineEdit_TaskName, 0, 2, 1, 4);
 
@@ -195,6 +197,7 @@ public:
         lineEdit_PlannedTime->setObjectName(QStringLiteral("lineEdit_PlannedTime"));
         lineEdit_PlannedTime->setMaximumSize(QSize(100, 16777215));
         lineEdit_PlannedTime->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        lineEdit_PlannedTime->setClearButtonEnabled(true);
 
         gridLayout_2->addWidget(lineEdit_PlannedTime, 0, 7, 1, 1);
 
@@ -219,7 +222,11 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(dateTimeEdit_EndTime->sizePolicy().hasHeightForWidth());
         dateTimeEdit_EndTime->setSizePolicy(sizePolicy1);
+        dateTimeEdit_EndTime->setMaximumSize(QSize(16777215, 16777215));
         dateTimeEdit_EndTime->setAutoFillBackground(true);
+        dateTimeEdit_EndTime->setFrame(true);
+        dateTimeEdit_EndTime->setReadOnly(false);
+        dateTimeEdit_EndTime->setButtonSymbols(QAbstractSpinBox::UpDownArrows);
         dateTimeEdit_EndTime->setDateTime(QDateTime(QDate(2017, 11, 10), QTime(16, 22, 0)));
         dateTimeEdit_EndTime->setCalendarPopup(true);
 
@@ -312,18 +319,19 @@ public:
         lineEdit_TimeFix->setObjectName(QStringLiteral("lineEdit_TimeFix"));
         lineEdit_TimeFix->setAutoFillBackground(true);
         lineEdit_TimeFix->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        lineEdit_TimeFix->setClearButtonEnabled(true);
 
         gridLayout_2->addWidget(lineEdit_TimeFix, 2, 7, 1, 2);
 
-        comboBox_TaskStage = new QComboBox(groupBox_MyTask);
-        comboBox_TaskStage->setObjectName(QStringLiteral("comboBox_TaskStage"));
+        comboBox_TaskState = new QComboBox(groupBox_MyTask);
+        comboBox_TaskState->setObjectName(QStringLiteral("comboBox_TaskState"));
         QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Fixed);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(comboBox_TaskStage->sizePolicy().hasHeightForWidth());
-        comboBox_TaskStage->setSizePolicy(sizePolicy2);
+        sizePolicy2.setHeightForWidth(comboBox_TaskState->sizePolicy().hasHeightForWidth());
+        comboBox_TaskState->setSizePolicy(sizePolicy2);
 
-        gridLayout_2->addWidget(comboBox_TaskStage, 4, 2, 1, 1);
+        gridLayout_2->addWidget(comboBox_TaskState, 4, 2, 1, 1);
 
         label_Priority = new QLabel(groupBox_MyTask);
         label_Priority->setObjectName(QStringLiteral("label_Priority"));
@@ -354,12 +362,12 @@ public:
 
         gridLayout_2->addWidget(label_Difficulty, 4, 5, 1, 1);
 
-        label_TaskStage = new QLabel(groupBox_MyTask);
-        label_TaskStage->setObjectName(QStringLiteral("label_TaskStage"));
-        label_TaskStage->setMaximumSize(QSize(120, 16777215));
-        label_TaskStage->setAutoFillBackground(true);
+        label_TaskState = new QLabel(groupBox_MyTask);
+        label_TaskState->setObjectName(QStringLiteral("label_TaskState"));
+        label_TaskState->setMaximumSize(QSize(120, 16777215));
+        label_TaskState->setAutoFillBackground(true);
 
-        gridLayout_2->addWidget(label_TaskStage, 4, 0, 1, 1);
+        gridLayout_2->addWidget(label_TaskState, 4, 0, 1, 1);
 
         pushButton_Save = new QPushButton(groupBox_MyTask);
         pushButton_Save->setObjectName(QStringLiteral("pushButton_Save"));
@@ -416,6 +424,7 @@ public:
         lineEdit_UserName->setSizePolicy(sizePolicy2);
         lineEdit_UserName->setMinimumSize(QSize(0, 0));
         lineEdit_UserName->setMaximumSize(QSize(16777215, 25));
+        lineEdit_UserName->setClearButtonEnabled(true);
 
         gridLayout_UserPage->addWidget(lineEdit_UserName, 3, 0, 1, 2);
 
@@ -620,6 +629,38 @@ public:
         tab_Files->setObjectName(QStringLiteral("tab_Files"));
         gridLayout_9 = new QGridLayout(tab_Files);
         gridLayout_9->setObjectName(QStringLiteral("gridLayout_9"));
+        pushButton_CommitFile = new QPushButton(tab_Files);
+        pushButton_CommitFile->setObjectName(QStringLiteral("pushButton_CommitFile"));
+
+        gridLayout_9->addWidget(pushButton_CommitFile, 1, 3, 1, 1);
+
+        lineEdit_Path = new QLineEdit(tab_Files);
+        lineEdit_Path->setObjectName(QStringLiteral("lineEdit_Path"));
+        lineEdit_Path->setClearButtonEnabled(true);
+
+        gridLayout_9->addWidget(lineEdit_Path, 1, 1, 1, 1);
+
+        label_Path = new QLabel(tab_Files);
+        label_Path->setObjectName(QStringLiteral("label_Path"));
+        QFont font4;
+        font4.setPointSize(11);
+        font4.setBold(false);
+        font4.setWeight(50);
+        label_Path->setFont(font4);
+        label_Path->setAutoFillBackground(true);
+
+        gridLayout_9->addWidget(label_Path, 1, 0, 1, 1);
+
+        pushButton_OpenFile = new QPushButton(tab_Files);
+        pushButton_OpenFile->setObjectName(QStringLiteral("pushButton_OpenFile"));
+
+        gridLayout_9->addWidget(pushButton_OpenFile, 1, 7, 1, 1);
+
+        pushButton_UpdateFile = new QPushButton(tab_Files);
+        pushButton_UpdateFile->setObjectName(QStringLiteral("pushButton_UpdateFile"));
+
+        gridLayout_9->addWidget(pushButton_UpdateFile, 1, 8, 1, 1);
+
         groupBox_ProjectFile = new QGroupBox(tab_Files);
         groupBox_ProjectFile->setObjectName(QStringLiteral("groupBox_ProjectFile"));
         gridLayout_11 = new QGridLayout(groupBox_ProjectFile);
@@ -653,7 +694,7 @@ public:
         gridLayout_11->addWidget(tableWidget_ProjectFile, 0, 0, 1, 1);
 
 
-        gridLayout_9->addWidget(groupBox_ProjectFile, 0, 0, 1, 3);
+        gridLayout_9->addWidget(groupBox_ProjectFile, 0, 0, 1, 5);
 
         groupBox_FileLog = new QGroupBox(tab_Files);
         groupBox_FileLog->setObjectName(QStringLiteral("groupBox_FileLog"));
@@ -668,43 +709,17 @@ public:
         gridLayout_10->addWidget(listWidget_FileLog, 0, 0, 1, 1);
 
 
-        gridLayout_9->addWidget(groupBox_FileLog, 0, 3, 1, 3);
-
-        label_Path = new QLabel(tab_Files);
-        label_Path->setObjectName(QStringLiteral("label_Path"));
-        QFont font4;
-        font4.setPointSize(11);
-        font4.setBold(false);
-        font4.setWeight(50);
-        label_Path->setFont(font4);
-        label_Path->setAutoFillBackground(true);
-
-        gridLayout_9->addWidget(label_Path, 1, 0, 1, 1);
-
-        lineEdit_Path = new QLineEdit(tab_Files);
-        lineEdit_Path->setObjectName(QStringLiteral("lineEdit_Path"));
-
-        gridLayout_9->addWidget(lineEdit_Path, 1, 1, 1, 1);
+        gridLayout_9->addWidget(groupBox_FileLog, 0, 6, 1, 3);
 
         pushButton_SelectFile = new QPushButton(tab_Files);
         pushButton_SelectFile->setObjectName(QStringLiteral("pushButton_SelectFile"));
 
         gridLayout_9->addWidget(pushButton_SelectFile, 1, 2, 1, 1);
 
-        pushButton_CommitFile = new QPushButton(tab_Files);
-        pushButton_CommitFile->setObjectName(QStringLiteral("pushButton_CommitFile"));
+        pushButton_DeleteFile = new QPushButton(tab_Files);
+        pushButton_DeleteFile->setObjectName(QStringLiteral("pushButton_DeleteFile"));
 
-        gridLayout_9->addWidget(pushButton_CommitFile, 1, 3, 1, 1);
-
-        pushButton_GetFile = new QPushButton(tab_Files);
-        pushButton_GetFile->setObjectName(QStringLiteral("pushButton_GetFile"));
-
-        gridLayout_9->addWidget(pushButton_GetFile, 1, 4, 1, 1);
-
-        pushButton_UpdateFile = new QPushButton(tab_Files);
-        pushButton_UpdateFile->setObjectName(QStringLiteral("pushButton_UpdateFile"));
-
-        gridLayout_9->addWidget(pushButton_UpdateFile, 1, 5, 1, 1);
+        gridLayout_9->addWidget(pushButton_DeleteFile, 1, 6, 1, 1);
 
         tabWidget->addTab(tab_Files, QString());
 
@@ -721,6 +736,7 @@ public:
         sizePolicy2.setHeightForWidth(comboBox_ProjectName->sizePolicy().hasHeightForWidth());
         comboBox_ProjectName->setSizePolicy(sizePolicy2);
         comboBox_ProjectName->setMinimumSize(QSize(450, 25));
+        comboBox_ProjectName->setEditable(true);
 
         gridLayout->addWidget(comboBox_ProjectName, 1, 4, 1, 1);
 
@@ -766,7 +782,6 @@ public:
          << QApplication::translate("MainWindow", "\345\244\251", Q_NULLPTR)
          << QApplication::translate("MainWindow", "\345\221\250", Q_NULLPTR)
          << QApplication::translate("MainWindow", "\346\234\210", Q_NULLPTR)
-         << QApplication::translate("MainWindow", "\345\210\206", Q_NULLPTR)
         );
         dateTimeEdit_StartTime->setDisplayFormat(QApplication::translate("MainWindow", "yyyy/M/d-H", Q_NULLPTR));
         label_UsedTime->setText(QApplication::translate("MainWindow", "\345\267\262\347\224\250\345\267\245\346\227\266(H):", Q_NULLPTR));
@@ -774,8 +789,8 @@ public:
         label_PercentNum->setText(QApplication::translate("MainWindow", "55%", Q_NULLPTR));
         label_TimeFix->setText(QApplication::translate("MainWindow", "\345\267\245\346\227\266\350\260\203\345\267\256(H):", Q_NULLPTR));
         lineEdit_TimeFix->setText(QApplication::translate("MainWindow", "+0.5", Q_NULLPTR));
-        comboBox_TaskStage->clear();
-        comboBox_TaskStage->insertItems(0, QStringList()
+        comboBox_TaskState->clear();
+        comboBox_TaskState->insertItems(0, QStringList()
          << QApplication::translate("MainWindow", "\345\207\206\345\244\207", Q_NULLPTR)
          << QApplication::translate("MainWindow", "\350\277\233\350\241\214", Q_NULLPTR)
          << QApplication::translate("MainWindow", "\345\220\216\347\273\255", Q_NULLPTR)
@@ -800,7 +815,7 @@ public:
          << QApplication::translate("MainWindow", "\345\205\266\344\273\226", Q_NULLPTR)
         );
         label_Difficulty->setText(QApplication::translate("MainWindow", "\344\273\273\345\212\241\351\232\276\345\272\246:", Q_NULLPTR));
-        label_TaskStage->setText(QApplication::translate("MainWindow", "\344\273\273\345\212\241\347\212\266\346\200\201:", Q_NULLPTR));
+        label_TaskState->setText(QApplication::translate("MainWindow", "\344\273\273\345\212\241\347\212\266\346\200\201:", Q_NULLPTR));
         pushButton_Save->setText(QApplication::translate("MainWindow", "\344\277\235\345\255\230\344\273\273\345\212\241\344\277\241\346\201\257", Q_NULLPTR));
         pushButton_AddMainTask->setText(QApplication::translate("MainWindow", "\346\267\273\345\212\240\344\270\273\344\273\273\345\212\241", Q_NULLPTR));
         pushButton_DeleteTask->setText(QApplication::translate("MainWindow", "\345\210\240", Q_NULLPTR));
@@ -816,7 +831,7 @@ public:
          << QApplication::translate("MainWindow", "4\345\205\266\344\273\226", Q_NULLPTR)
         );
         pushButton_SetUserRole->setText(QApplication::translate("MainWindow", "\350\256\276\347\275\256\350\247\222\350\211\262", Q_NULLPTR));
-        pushButton_TaskLog->setText(QApplication::translate("MainWindow", "\350\256\260\345\275\225\344\273\273\345\212\241\346\227\245\345\277\227", Q_NULLPTR));
+        pushButton_TaskLog->setText(QApplication::translate("MainWindow", "\344\277\235\345\255\230\351\241\271\347\233\256\346\227\245\345\277\227", Q_NULLPTR));
         QTreeWidgetItem *___qtreewidgetitem = treeWidget_MyTask->headerItem();
         ___qtreewidgetitem->setText(0, QApplication::translate("MainWindow", "\344\273\273\345\212\241\345\210\227\350\241\250", Q_NULLPTR));
 
@@ -857,6 +872,11 @@ public:
         textEdit_TeamTaskLog->setPlaceholderText(QApplication::translate("MainWindow", "\347\202\271\351\200\211\344\273\273\345\212\241\350\212\202\347\202\271\344\273\245\346\230\276\347\244\272\345\257\271\345\272\224\346\227\245\345\277\227...", Q_NULLPTR));
         label_TeamPercent->setText(QApplication::translate("MainWindow", "\346\200\273\350\277\233\345\272\246:", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_TaskOverview), QApplication::translate("MainWindow", "\344\273\273\345\212\241\346\200\273\350\247\210", Q_NULLPTR));
+        pushButton_CommitFile->setText(QApplication::translate("MainWindow", "\346\217\220\344\272\244\346\226\207\344\273\266", Q_NULLPTR));
+        lineEdit_Path->setText(QApplication::translate("MainWindow", "D:\\File", Q_NULLPTR));
+        label_Path->setText(QApplication::translate("MainWindow", "\346\226\207\344\273\266\350\267\257\345\276\204:", Q_NULLPTR));
+        pushButton_OpenFile->setText(QApplication::translate("MainWindow", "\346\211\223\345\274\200\346\226\207\344\273\266", Q_NULLPTR));
+        pushButton_UpdateFile->setText(QApplication::translate("MainWindow", "\345\210\267\346\226\260\345\210\227\350\241\250", Q_NULLPTR));
         groupBox_ProjectFile->setTitle(QApplication::translate("MainWindow", "\351\241\271\347\233\256\346\226\207\344\273\266", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem = tableWidget_ProjectFile->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "\346\226\207\344\273\266", Q_NULLPTR));
@@ -893,12 +913,8 @@ public:
         ___qlistwidgetitem5->setText(QApplication::translate("MainWindow", "\346\226\207\344\273\266\346\227\245\345\277\227C", Q_NULLPTR));
         listWidget_FileLog->setSortingEnabled(__sortingEnabled3);
 
-        label_Path->setText(QApplication::translate("MainWindow", "\346\226\207\344\273\266\350\267\257\345\276\204:", Q_NULLPTR));
-        lineEdit_Path->setText(QApplication::translate("MainWindow", "D:\\File", Q_NULLPTR));
         pushButton_SelectFile->setText(QApplication::translate("MainWindow", "\346\265\217\350\247\210", Q_NULLPTR));
-        pushButton_CommitFile->setText(QApplication::translate("MainWindow", "\346\217\220\344\272\244\346\226\207\344\273\266", Q_NULLPTR));
-        pushButton_GetFile->setText(QApplication::translate("MainWindow", "\350\216\267\345\217\226\346\226\207\344\273\266", Q_NULLPTR));
-        pushButton_UpdateFile->setText(QApplication::translate("MainWindow", "\345\210\267\346\226\260\345\210\227\350\241\250", Q_NULLPTR));
+        pushButton_DeleteFile->setText(QApplication::translate("MainWindow", "\345\210\240\351\231\244\346\226\207\344\273\266", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_Files), QApplication::translate("MainWindow", "\344\273\273\345\212\241\346\226\207\344\273\266", Q_NULLPTR));
         label_CurrentProject->setText(QApplication::translate("MainWindow", "\345\275\223\345\211\215\351\241\271\347\233\256:", Q_NULLPTR));
         pushButton_CreateProject->setText(QApplication::translate("MainWindow", "\345\210\233\345\273\272\351\241\271\347\233\256", Q_NULLPTR));
