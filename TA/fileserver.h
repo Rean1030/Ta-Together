@@ -23,6 +23,7 @@ static const QString c_sFileDes("文件描述");
 static const QString c_sFileUser("文件所有者");
 static const QString c_sFilePath("文件路径");
 static const QString c_sFileTime("文件上传时间");
+static const QString c_sFileLogs("文件日志");
 
 static const QString c_sMembers("队员");
 static const QString c_sMemberName("队员名");
@@ -75,6 +76,12 @@ public:
     bool createProject(QJsonValue oProjName);
     bool joinProject(QJsonValue oProjName);
     void leaveProject(QJsonValue oProjName);
+
+    QJsonObject getFile(QJsonValue oFileName);
+    void putFile(QJsonObject oFile, bool bNameMatch = true);
+    void removeFile(QJsonObject oFile);
+    void removeFile(QJsonValue oFileName);
+    QJsonArray getFiles();
 
     inline QJsonObject getProject() {return m_oProject;}
     inline QJsonObject getMember() {return m_oMember;}

@@ -393,6 +393,125 @@ void FileServer::leaveProject(QJsonValue oProjName)
     }
 }
 
+void FileServer::putFile(QJsonObject oFile, bool bNameMatch)
+{
+    QJsonArray oFiles;
+    if (m_oProject.contains(c_sFiles) && m_oProject.value(c_sFiles).isArray())
+    {
+        for (int i = 0; i < m_oProject.value(c_sFiles).toArray().count(); i++)
+        {
+            if (bNameMatch)
+            {
+                if (m_oProject.value(c_sFiles).toArray().at(i).isObject()
+                        && m_oProject.value(c_sFiles).toArray().at(i).toObject().contains(c_sFileName)
+                        && (m_oProject.value(c_sFiles).toArray().at(i).toObject().value(c_sFileName)
+                            == oFile.value(c_sFileName)))
+                {
+                    continue;
+                }
+            }
+            else
+            {
+                if (m_oProject.value(c_sFiles).toArray().at(i).isObject()
+                        && (m_oProject.value(c_sFiles).toArray().at(i).toObject() == oFile))
+                {
+                    continue;
+                }
+            }
+            oFiles.append(m_oProject.value(c_sFiles).toArray().at(i));
+        }
+    }
+    oFiles.append(oFile);
+    if (m_oProject.contains(c_sFiles))
+    {
+        m_oProject[c_sFiles] = oFiles;
+    }
+    else
+    {
+        m_oProject.insert(c_sFiles, oFiles);
+    }
+}
+
+QJsonObject FileServer::getFile(QJsonValue oFileName)
+{
+    QJsonObject oFile;
+    if (m_oProject.contains(c_sFiles) && m_oProject.value(c_sFiles).isArray())
+    {
+        for (int i = 0; i < m_oProject.value(c_sFiles).toArray().count(); i++)
+        {
+            if (m_oProject.value(c_sFiles).toArray().at(i).isObject()
+                    && m_oProject.value(c_sFiles).toArray().at(i).toObject().contains(c_sFileName)
+                    && (m_oProject.value(c_sFiles).toArray().at(i).toObject().value(c_sFileName) == oFileName))
+            {
+                oFile = m_oProject.value(c_sFiles).toArray().at(i).toObject();
+            }
+        }
+    }
+    return oFile;
+}
+
+void FileServer::removeFile(QJsonObject oFile)
+{
+    QJsonArray oFiles;
+    if (m_oProject.contains(c_sFiles) && m_oProject.value(c_sFiles).isArray())
+    {
+        for (int i = 0; i < m_oProject.value(c_sFiles).toArray().count(); i++)
+        {
+            if (m_oProject.value(c_sFiles).toArray().at(i).isObject()
+                    && (m_oProject.value(c_sFiles).toArray().at(i).toObject() == oFile))
+            {
+                continue;
+            }
+            oFiles.append(m_oProject.value(c_sFiles).toArray().at(i));
+        }
+    }
+    if (m_oProject.contains(c_sFiles))
+    {
+        m_oProject[c_sFiles] = oFiles;
+    }
+    else
+    {
+        m_oProject.insert(c_sFiles, oFiles);
+    }
+}
+
+void FileServer::removeFile(QJsonValue oFileName)
+{
+    QJsonArray oFiles;
+    if (m_oProject.contains(c_sFiles) && m_oProject.value(c_sFiles).isArray())
+    {
+        for (int i = 0; i < m_oProject.value(c_sFiles).toArray().count(); i++)
+        {
+            if (m_oProject.value(c_sFiles).toArray().at(i).isObject()
+                    && m_oProject.value(c_sFiles).toArray().at(i).toObject().contains(c_sFileName)
+                    && (m_oProject.value(c_sFiles).toArray().at(i).toObject().value(c_sFileName)
+                        == oFileName))
+            {
+                continue;
+            }
+            oFiles.append(m_oProject.value(c_sFiles).toArray().at(i));
+        }
+    }
+    if (m_oProject.contains(c_sFiles))
+    {
+        m_oProject[c_sFiles] = oFiles;
+    }
+    else
+    {
+        m_oProject.insert(c_sFiles, oFiles);
+    }
+}
+
+QJsonArray FileServer::getFiles()
+{
+    QJsonArray oFiles;
+    if (m_oProject.contains(c_sFiles) && m_oProject.value(c_sFiles).isArray())
+    {
+        oFiles = m_oProject.value(c_sFiles).toArray();
+    }
+    return oFiles;
+}
+
 void FileServer::updateMemberToJsonObj()
 {
     int iM(-1);

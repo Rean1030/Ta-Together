@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->treeWidget_MyTask->expandAll();
+    ui->treeWidget_MyTask->setCurrentItem(ui->treeWidget_MyTask->itemAt(0, 0));
     initNumEditValidator();
 
     m_pNetServer = new NetServer(this);
@@ -86,7 +87,27 @@ void MainWindow::updatePlannedTime()
                 iN--;
             }
         }
-        ui->lineEdit_PlannedTime->setText(QString::number(iN * 8 + iH));
+        qint64 iT = 0;
+        switch(ui->comboBox_TimeUnit->currentIndex())
+        {
+        case 0:
+        {
+            iT = iN * 8 + iH;
+        } break;
+        case 1:
+        {
+            iT = iN + iH / 8;
+        } break;
+        case 2:
+        {
+            iT = (iN + iH / 8) / 5;
+        } break;
+        case 3:
+        {
+            iT = endDT.date().month() - startDT.date().month();
+        } break;
+        }
+        ui->lineEdit_PlannedTime->setText(QString::number(iT));
     }
 }
 
@@ -144,16 +165,17 @@ QJsonObject MainWindow::getTaskInfToJs()
 void MainWindow::on_horizontalSlider_TaskPercent_valueChanged(int value)
 {
     ui->label_PercentNum->setText(QString("%1%").arg(value));
-    updateUsedTime();
     if (value == 100)
     {
         ui->dateTimeEdit_EndTime->setDateTime(QDateTime::currentDateTime());
     }
+    updateUsedTime();
 }
 
 void MainWindow::on_pushButton_Save_clicked()
 {
     // TODO
+    updateUsedTime();
     ui->treeWidget_MyTask->currentItem()->setText(0, ui->lineEdit_TaskName->text());
     QJsonObject jsonTaskInf = getTaskInfToJs();
 
@@ -176,7 +198,7 @@ void MainWindow::on_lineEdit_TimeFix_textChanged(const QString &arg1)
 
 void MainWindow::on_dateTimeEdit_EndTime_dateTimeChanged(const QDateTime &dateTime)
 {
-    updatePlannedTime();
+    updateUsedTime();
 }
 
 void MainWindow::on_dateTimeEdit_StartTime_dateTimeChanged(const QDateTime &dateTime)
