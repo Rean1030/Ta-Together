@@ -32,7 +32,7 @@ bool FileServer::readFile()
 bool FileServer::writeFile()
 {
     QFile file(c_sFile);
-    if(!file.open(QIODevice::WriteOnly))
+    if(!file.open(QIODevice::Truncate))
     {
         qDebug() << c_sFile << "文件打开失败，文件不存在！";
         return false;
