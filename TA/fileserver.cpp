@@ -17,9 +17,9 @@ bool FileServer::readFile()
     file.close();
     QJsonParseError er;
     QJsonDocument jsonDoc = QJsonDocument::fromJson(fileByte, &er);
-    if(er.error == QJsonParseError::NoError && !jsonDoc.isNull())
+    if(er.error == QJsonParseError::NoError && !jsonDoc.isNull() && jsonDoc.isObject())
     {
-        m_oJsonDoc = jsonDoc;
+        m_oJsonObj = jsonDoc.object();
         return true;
     }
     else
@@ -37,8 +37,8 @@ bool FileServer::writeFile()
         qDebug() << c_sFile << "文件打开失败，文件不存在！";
         return false;
     }
-    QJsonDocument m_oJsonDoc;
-    QByteArray fileByte = m_oJsonDoc.toJson();
+    QJsonDocument jsonDoc(m_oJsonObj);
+    QByteArray fileByte = jsonDoc.toJson();
     file.write(fileByte);
     file.close();
     return true;
@@ -186,7 +186,7 @@ QJsonObject FileServer::getTaskInf(QJsonValue mainTaskName, QJsonValue subTaskNa
     return oJsObj;
 }
 
-bool FileServer::setMemberLog(QJsonObject oLog)
+void FileServer::setMemberLog(QJsonObject oLog)
 {
     if(m_oMember.contains(c_sUserLogs))
     {
@@ -359,11 +359,13 @@ bool FileServer::joinProject(QJsonValue oProjName)
 
 void FileServer::leaveProject(QJsonValue oProjName)
 {
+    int iP(-1);
+    QJsonObject oProj;
     for (int i = 0; i < m_oProjects.count(); i++)
     {
-        QJsonObject oProj = m_oProjects.at(i).toObject();
-        if (oProj.value(c_sProjectName) == oProjName)
+        if (m_oProjects.at(i).toObject().value(c_sProjectName) == oProjName)
         {
+            oProj = m_oProjects.at(i).toObject();
             if (oProj.contains(c_sMembers))
             {
                 QJsonArray oMembs = oProj.value(c_sMembers).toArray();
@@ -380,18 +382,76 @@ void FileServer::leaveProject(QJsonValue oProjName)
                 {
                     oMembs.removeAt(iM);
                     oProj[c_sMembers] = oMembs;
+                    iP = i;
                 }
-            }
+            }            
         }
+    }
+    if (iP != -1)
+    {
+        m_oProjects.replace(iP, oProj);
     }
 }
 
-void FileServer::updateMemberToJsonDoc()
+void FileServer::updateMemberToJsonObj()
 {
-    // TODO
+    int iM(-1);
+    for (int i = 0; i < m_oMembers.count(); i++)
+    {
+        if (m_oMembers.at(i).toObject().value(c_sMemberName) == m_oMember.value(c_sMemberName))
+        {
+            iM = i;
+        }
+    }
+    m_oMembers.replace(iM, m_oMember);
+
+    m_oProject[c_sMembers] = m_oMembers;
+
+    int iP(-1);
+    for (int i = 0; i < m_oProjects.count(); i++)
+    {
+        if (m_oProjects.at(i).toObject().value(c_sProjectName) == m_oProject.value(c_sProjectName))
+        {
+            iP = i;
+        }
+    }
+    m_oProjects.replace(iP, m_oProject);
+
+    m_oJsonObj.insert(c_sUserName, m_oUserName);
+    m_oJsonObj.insert(c_sCurProject, m_oCurProject);
+    m_oJsonObj.insert(c_sProjects, m_oProjects);
 }
 
-void FileServer::updateMemberFromJsonDoc()
+void FileServer::updateMemberFromJsonObj()
 {
-    // TODO
+    m_oUserName = m_oJsonObj.value(c_sUserName);
+    m_oCurProject = m_oJsonObj.value(c_sCurProject);
+
+    if (m_oJsonObj.contains(c_sProjects) && m_oJsonObj.value(c_sProjects).isArray())
+    {
+        m_oProjects = m_oJsonObj.value(c_sProjects).toArray();
+    }
+
+    for (int i = 0; i < m_oProjects.count(); i++)
+    {
+        if (m_oProjects.at(i).isObject() && m_oProjects.at(i).toObject().contains(c_sProjectName)
+                && (m_oProjects.at(i).toObject().value(c_sProjectName) == m_oCurProject))
+        {
+            m_oProject = m_oProjects.at(i).toObject();
+        }
+    }
+
+    if (m_oProject.contains(c_sMembers) && m_oProject.value(c_sMembers).isArray())
+    {
+        m_oMembers = m_oProject.value(c_sMembers).toArray();
+    }
+
+    for (int i = 0; i < m_oMembers.count(); i++)
+    {
+        if (m_oMembers.at(i).isObject() && m_oMembers.at(i).toObject().contains(c_sMemberName)
+                && (m_oMembers.at(i).toObject().value(c_sMemberName) == m_oUserName))
+        {
+            m_oMember = m_oMembers.at(i).toObject();
+        }
+    }
 }

@@ -58,16 +58,13 @@ public:
     bool readFile();
     bool writeFile();
 
-    inline QJsonDocument getJsonDoc() {return m_oJsonDoc;}
-    inline void setJsonDoc(QJsonDocument &jsonDoc) {m_oJsonDoc = jsonDoc;}
-
     QJsonValue getUserName();
     void setUserName(QJsonValue userName);
 
     void setTaskInf(QJsonObject mainTaskInf, QJsonObject subTaskInf);
     QJsonObject getTaskInf(QJsonValue mainTaskName, QJsonValue subTaskName = "");
 
-    bool setMemberLog(QJsonObject oLog);
+    void setMemberLog(QJsonObject oLog);
     QJsonValue getMemberLog(QJsonValue oLogDate);
 
     void setMemberRole(QJsonValue oRole);
@@ -80,17 +77,17 @@ public:
     void leaveProject(QJsonValue oProjName);
 
     inline QJsonObject getProject() {return m_oProject;}
+    inline QJsonObject getMember() {return m_oMember;}
+    inline void setMember(QJsonObject oMemberData) {m_oMember = oMemberData;}
 
-    void updateMemberToJsonDoc();
-    void updateMemberFromJsonDoc();
+    void updateMemberToJsonObj();
+    void updateMemberFromJsonObj();
 
 signals:
 
 public slots:
 
 private:
-    QJsonDocument   m_oJsonDoc          ;
-
     QJsonObject     m_oJsonObj          ;
     QJsonValue      m_oUserName         ;
     QJsonValue      m_oCurProject       ;
