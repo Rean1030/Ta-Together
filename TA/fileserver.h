@@ -8,46 +8,57 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QFile>
+#include <QString>
 
-const static QString c_sDateTimeFormat("yyyy/M/d-H");
+// ÆäËûÆ½Ì¨±àÂë²»Ò»ÖÂÊ±£¬ĞèÒªÇĞ»»³£Á¿µÄ¶¨ÒåÀàĞÍ
+static QString c_sTAFile;
+static QString c_sTAPath;
 
-static const QString c_sUserName("ç”¨æˆ·å");
-static const QString c_sCurProject("å½“å‰é¡¹ç›®");
+static int c_newTag = 1;
 
-static const QString c_sProjects("é¡¹ç›®");
-static const QString c_sProjectName("é¡¹ç›®åç§°");
+static const QString c_sGUID                =    QString ("GUID");
+static const QString c_sDateTimeLongFormat  =    QString ("yyyy/M/d-H:m:s");
+static const QString c_sDateTimeFormat      =    QString ("yyyy/M/d-H");
+static const QString c_sDateFormat          =    QString ("yyyy/M/d");
 
-static const QString c_sFiles("æ–‡ä»¶");
-static const QString c_sFileName("æ–‡ä»¶å");
-static const QString c_sFileDes("æ–‡ä»¶æè¿°");
-static const QString c_sFileUser("æ–‡ä»¶æ‰€æœ‰è€…");
-static const QString c_sFilePath("æ–‡ä»¶è·¯å¾„");
-static const QString c_sFileTime("æ–‡ä»¶ä¸Šä¼ æ—¶é—´");
-static const QString c_sFileLogs("æ–‡ä»¶æ—¥å¿—");
+static const QString c_sUserName            = QStringLiteral ("ÓÃ»§Ãû");
+static const QString c_sCurProject          = QStringLiteral ("µ±Ç°ÏîÄ¿");
 
-static const QString c_sMembers("é˜Ÿå‘˜");
-static const QString c_sMemberName("é˜Ÿå‘˜å");
-static const QString c_sMemberRole("è§’è‰²");
-static const QString c_sMemberTime("é˜Ÿå‘˜ä¿å­˜æ—¶é—´");
+static const QString c_sProjects            = QStringLiteral ("ÏîÄ¿");
+static const QString c_sProjectName         = QStringLiteral ("ÏîÄ¿Ãû³Æ");
 
-static const QString c_sUserLogs("ä»»åŠ¡æ—¥å¿—");
-static const QString c_sLogDate("æ—¥å¿—æ—¥æœŸ");
-static const QString c_sLogInf("æ—¥å¿—å†…å®¹");
+static const QString c_sFiles               = QStringLiteral ("ÎÄ¼ş");
+static const QString c_sFileName            = QStringLiteral ("ÎÄ¼şÃû");
+static const QString c_sFileDes             = QStringLiteral ("ÎÄ¼şÃèÊö");
+static const QString c_sFileUser            = QStringLiteral ("ÎÄ¼şËùÓĞÕß");
+static const QString c_sFilePath            = QStringLiteral ("ÎÄ¼şÂ·¾¶");
+static const QString c_sFileTime            = QStringLiteral ("ÎÄ¼şÉÏ´«Ê±¼ä");
+static const QString c_sFileLogs            = QStringLiteral ("ÎÄ¼şÈÕÖ¾");
 
-static const QString c_sMainTaskList("ä¸»ä»»åŠ¡åˆ—è¡¨");
-static const QString c_sSubTaskList("å­ä»»åŠ¡åˆ—è¡¨");
+static const QString c_sMembers             = QStringLiteral ("¶ÓÔ±");
+static const QString c_sMemberName          = QStringLiteral ("¶ÓÔ±Ãû");
+static const QString c_sMemberRole          = QStringLiteral ("½ÇÉ«");
+static const QString c_sMemberTime          = QStringLiteral ("¶ÓÔ±±£´æÊ±¼ä");
 
-static const QString c_sTaskName("ä»»åŠ¡åç§°");
-static const QString c_sPlannedTime("è®¡åˆ’ç”¨æ—¶");
-static const QString c_sUsedTime("å·²ç”¨å·¥æ—¶");
-static const QString c_sTimeFix("å·¥æ—¶è°ƒå·®");
-static const QString c_sStartTime("å¼€å§‹æ—¶é—´");
-static const QString c_sTaskPercent("ä»»åŠ¡è¿›åº¦");
-static const QString c_sTaskState("ä»»åŠ¡çŠ¶æ€");
-static const QString c_sPriority("ä¼˜å…ˆçº§åˆ«");
-static const QString c_sDifficulty("ä»»åŠ¡éš¾åº¦");
+static const QString c_sUserLogs            = QStringLiteral ("ÈÎÎñÈÕÖ¾");
+static const QString c_sLogDate             = QStringLiteral ("ÈÕÖ¾ÈÕÆÚ");
+static const QString c_sLogInf              = QStringLiteral ("ÈÕÖ¾ÄÚÈİ");
 
-static QString c_sFile;
+static const QString c_sMainTaskList        = QStringLiteral ("Ö÷ÈÎÎñÁĞ±í");
+static const QString c_sSubTaskList         = QStringLiteral ("×ÓÈÎÎñÁĞ±í");
+
+static const QString c_sTaskName            = QStringLiteral ("ÈÎÎñÃû³Æ");
+static const QString c_sPlannedTime         = QStringLiteral ("¼Æ»®ÓÃÊ±");
+static const QString c_sPlannedTimeUnit     = QStringLiteral ("¼Æ»®ÓÃÊ±µ¥Î»");
+static const QString c_sUsedTime            = QStringLiteral ("ÒÑÓÃ¹¤Ê±");
+static const QString c_sTimeFix             = QStringLiteral ("¹¤Ê±µ÷²î");
+static const QString c_sStartTime           = QStringLiteral ("¿ªÊ¼Ê±¼ä");
+static const QString c_sTaskPercent         = QStringLiteral ("ÈÎÎñ½ø¶È");
+static const QString c_sTaskDetails         = QStringLiteral ("ÈÎÎñÄÚÈİ");
+static const QString c_sTaskState           = QStringLiteral ("ÈÎÎñ×´Ì¬");
+static const QString c_sPriority            = QStringLiteral ("ÓÅÏÈ¼¶±ğ");
+static const QString c_sDifficulty          = QStringLiteral ("ÈÎÎñÄÑ¶È");
+
 
 class FileServer : public QObject
 {
@@ -59,11 +70,26 @@ public:
     bool readFile();
     bool writeFile();
 
+    void clearInvalid();
+
     QJsonValue getUserName();
     void setUserName(QJsonValue userName);
+    void changeMemberNames(QJsonValue oldName, QJsonValue newName);
 
+    void setCurProjName(QJsonValue curProjName);
+    QJsonValue getCurProjName();
+
+    void changeTaskName(QJsonValue preName, QJsonValue curName, bool bMainTask);
+    void setTaskInf(QJsonObject mainTaskInf);
     void setTaskInf(QJsonObject mainTaskInf, QJsonObject subTaskInf);
     QJsonObject getTaskInf(QJsonValue mainTaskName, QJsonValue subTaskName = "");
+    void createNewTask(QJsonValue oNewTaskName, QJsonValue oParentTaskName = "");
+    void deleteTask(QJsonValue oTaskName, QJsonValue oParentTaskName = "");
+
+    void updateMainFromSub(QJsonValue mainTaskName);
+
+    // ¸üĞÂ×ÓÈÎÎñÃû³Æ
+    void updateSubTaskName(QJsonValue mainTaskName, QJsonValue preSubTaskName, QJsonValue subTaskName);
 
     void setMemberLog(QJsonObject oLog);
     QJsonValue getMemberLog(QJsonValue oLogDate);
@@ -73,19 +99,32 @@ public:
 
     void updateMemberTime();
 
-    bool createProject(QJsonValue oProjName);
-    bool joinProject(QJsonValue oProjName);
-    void leaveProject(QJsonValue oProjName);
+    bool createProject(QJsonValue oProjName, QJsonValue memberName = "");
+    bool joinProject(QJsonValue oProjName, QJsonValue memberName = "");
+    void leaveProject(QJsonValue oProjName, QJsonValue memberName = "");
+    void deleteProject(QJsonValue oProjName);
 
-    QJsonObject getFile(QJsonValue oFileName);
+    QJsonObject getFile(QJsonValue oFileName, QJsonValue projName = "");
     void putFile(QJsonObject oFile, bool bNameMatch = true);
     void removeFile(QJsonObject oFile);
     void removeFile(QJsonValue oFileName);
-    QJsonArray getFiles();
+    QJsonArray getFiles(QJsonValue projName = "");
+    void setFiles(QJsonArray oFiles, QJsonValue projName = "");
 
-    inline QJsonObject getProject() {return m_oProject;}
-    inline QJsonObject getMember() {return m_oMember;}
-    inline void setMember(QJsonObject oMemberData) {m_oMember = oMemberData;}
+    void writeFileLog(QJsonValue logInfo);
+    void clearFileLog(int iBegin, int iEnd = 0);
+    QJsonArray getFileLogs(QJsonValue projName = "");
+    void setFileLogs(QJsonArray oFileLogs, QJsonValue projName = "");
+
+    bool hasMember(QJsonValue userName, QJsonValue projName = "");
+    bool hasProject(QJsonValue projName);
+    QJsonArray getProjList();
+
+    inline QJsonArray getProjects() {return m_oProjects;}
+    QJsonObject getProject(QJsonValue oProjName = "");
+    void setProject(QJsonObject oProjectData, QJsonValue oProjName = "");
+    QJsonObject getMember(QJsonValue oProjName = "");
+    void setMember(QJsonObject oMemberData, QJsonValue oProjName = "");
 
     void updateMemberToJsonObj();
     void updateMemberFromJsonObj();
@@ -98,6 +137,7 @@ private:
     QJsonObject     m_oJsonObj          ;
     QJsonValue      m_oUserName         ;
     QJsonValue      m_oCurProject       ;
+
 
     QJsonArray      m_oProjects         ;
 

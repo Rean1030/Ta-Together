@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += network core gui
+QT       += network core gui axcontainer
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -28,13 +28,32 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     netserver.cpp \
-    fileserver.cpp
+    fileserver.cpp \
+    PersonalTaskState.cpp \
+    public.cpp \
+    theme/theme.cpp \
+    theme/qtcassert.cpp \
+    theme/manhattanstyle.cpp \
+    theme/stylehelper.cpp \
+    configdialog.cpp \
+    setting.cpp
 
 HEADERS  += mainwindow.h \
     netserver.h \
-    fileserver.h
+    fileserver.h \
+    PersonalTaskState.h \
+    public.h \
+    theme/theme.h \
+    theme/theme_p.h \
+    theme/qtcassert.h \
+    theme/algorithm.h \
+    theme/manhattanstyle.h \
+    theme/stylehelper.h \
+    configdialog.h \
+    setting.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    configdialog.ui
 
 RESOURCES += \
     TA.qrc

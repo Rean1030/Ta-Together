@@ -1,5 +1,10 @@
 <RCC>
-  <qresource prefix="Logo">
-    <file>TA.ico</file>
-  </qresource>
+    <qresource prefix="/Logo">
+        <file>TA.ico</file>
+        <file>Weekend.ico</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>themeqrc/flat-dark.theme</file>
+        <file>themeqrc/dark.theme</file>
+    </qresource>
 </RCC>

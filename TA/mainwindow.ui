@@ -118,7 +118,10 @@
              <item row="0" column="2" colspan="4">
               <widget class="QLineEdit" name="lineEdit_TaskName">
                <property name="text">
-                <string>项目A</string>
+                <string/>
+               </property>
+               <property name="placeholderText">
+                <string>请输入任务名称...</string>
                </property>
                <property name="clearButtonEnabled">
                 <bool>true</bool>
@@ -150,7 +153,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>5</string>
+                <string/>
                </property>
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -259,11 +262,6 @@
                  <string>周</string>
                 </property>
                </item>
-               <item>
-                <property name="text">
-                 <string>月</string>
-                </property>
-               </item>
               </widget>
              </item>
              <item row="1" column="2">
@@ -342,7 +340,7 @@
                 <enum>QLCDNumber::Flat</enum>
                </property>
                <property name="value" stdset="0">
-                <double>5.500000000000000</double>
+                <double>0.000000000000000</double>
                </property>
               </widget>
              </item>
@@ -444,7 +442,7 @@
                 <bool>true</bool>
                </property>
                <property name="text">
-                <string>+0.5</string>
+                <string>0</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -614,7 +612,7 @@
               </widget>
              </item>
              <item row="4" column="7" colspan="2">
-              <widget class="QPushButton" name="pushButton_Save">
+              <widget class="QPushButton" name="pushButton_ResetTaskInfo">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -628,7 +626,7 @@
                 </size>
                </property>
                <property name="text">
-                <string>保存任务信息</string>
+                <string>撤销修改</string>
                </property>
               </widget>
              </item>
@@ -743,6 +741,9 @@
               <height>25</height>
              </size>
             </property>
+            <property name="placeholderText">
+             <string>请输入用户名...</string>
+            </property>
             <property name="clearButtonEnabled">
              <bool>true</bool>
             </property>
@@ -793,6 +794,16 @@
             </property>
             <property name="showGroupSeparator" stdset="0">
              <bool>false</bool>
+            </property>
+            <property name="dateTime">
+             <datetime>
+              <hour>0</hour>
+              <minute>0</minute>
+              <second>0</second>
+              <year>2017</year>
+              <month>11</month>
+              <day>11</day>
+             </datetime>
             </property>
             <property name="currentSection">
              <enum>QDateTimeEdit::YearSection</enum>
@@ -919,36 +930,6 @@
               <string>任务列表</string>
              </property>
             </column>
-            <item>
-             <property name="text">
-              <string>项目A</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>主任务B</string>
-              </property>
-              <item>
-               <property name="text">
-                <string>子任务C</string>
-               </property>
-              </item>
-             </item>
-             <item>
-              <property name="text">
-               <string>主任务D</string>
-              </property>
-              <item>
-               <property name="text">
-                <string>子任务E</string>
-               </property>
-              </item>
-             </item>
-             <item>
-              <property name="text">
-               <string>主任务F</string>
-              </property>
-             </item>
-            </item>
            </widget>
           </item>
          </layout>
@@ -1040,21 +1021,6 @@
               <height>16777215</height>
              </size>
             </property>
-            <item>
-             <property name="text">
-              <string>组员A</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>组员B</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>组员C</string>
-             </property>
-            </item>
            </widget>
           </item>
          </layout>
@@ -1176,7 +1142,10 @@
         <item row="1" column="1">
          <widget class="QLineEdit" name="lineEdit_Path">
           <property name="text">
-           <string>D:\File</string>
+           <string/>
+          </property>
+          <property name="placeholderText">
+           <string>点右侧浏览选择或直接在此输入上传文件全路径...</string>
           </property>
           <property name="clearButtonEnabled">
            <bool>true</bool>
@@ -1222,14 +1191,30 @@
           <layout class="QGridLayout" name="gridLayout_11">
            <item row="0" column="0">
             <widget class="QTableWidget" name="tableWidget_ProjectFile">
+             <property name="sizeAdjustPolicy">
+              <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+             </property>
              <property name="editTriggers">
               <set>QAbstractItemView::NoEditTriggers</set>
              </property>
-             <row>
-              <property name="text">
-               <string>1</string>
-              </property>
-             </row>
+             <property name="rowCount">
+              <number>0</number>
+             </property>
+             <attribute name="horizontalHeaderCascadingSectionResizes">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="horizontalHeaderHighlightSections">
+              <bool>true</bool>
+             </attribute>
+             <attribute name="verticalHeaderCascadingSectionResizes">
+              <bool>false</bool>
+             </attribute>
+             <attribute name="verticalHeaderDefaultSectionSize">
+              <number>55</number>
+             </attribute>
+             <attribute name="verticalHeaderMinimumSectionSize">
+              <number>55</number>
+             </attribute>
              <column>
               <property name="text">
                <string>文件</string>
@@ -1237,7 +1222,7 @@
              </column>
              <column>
               <property name="text">
-               <string>备注</string>
+               <string>描述</string>
               </property>
              </column>
              <column>
@@ -1250,26 +1235,16 @@
                <string>时间</string>
               </property>
              </column>
-             <item row="0" column="0">
-              <property name="text">
-               <string>文件A</string>
-              </property>
-             </item>
-             <item row="0" column="1">
-              <property name="text">
-               <string>需求文档B</string>
-              </property>
-             </item>
-             <item row="0" column="2">
-              <property name="text">
-               <string>组员C</string>
-              </property>
-             </item>
-             <item row="0" column="3">
-              <property name="text">
-               <string>2017.11.29</string>
-              </property>
-             </item>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLineEdit" name="lineEdit_FileDes">
+             <property name="placeholderText">
+              <string>点此输入上传文件的描述...</string>
+             </property>
+             <property name="clearButtonEnabled">
+              <bool>true</bool>
+             </property>
             </widget>
            </item>
           </layout>
@@ -1283,21 +1258,21 @@
           <layout class="QGridLayout" name="gridLayout_10">
            <item row="0" column="0">
             <widget class="QListWidget" name="listWidget_FileLog">
-             <item>
-              <property name="text">
-               <string>文件日志A</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>文件日志B</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>文件日志C</string>
-              </property>
-             </item>
+             <property name="contextMenuPolicy">
+              <enum>Qt::CustomContextMenu</enum>
+             </property>
+             <property name="sizeAdjustPolicy">
+              <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+             </property>
+             <property name="editTriggers">
+              <set>QAbstractItemView::NoEditTriggers</set>
+             </property>
+             <property name="resizeMode">
+              <enum>QListView::Adjust</enum>
+             </property>
+             <property name="layoutMode">
+              <enum>QListView::Batched</enum>
+             </property>
             </widget>
            </item>
           </layout>

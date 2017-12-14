@@ -1,4 +1,8 @@
-#include <windows.h>
+# if defined(UNDER_CE)
+#  include <winbase.h>
+# else
+#  include <windows.h>
+# endif
 
 IDI_ICON1	ICON	DISCARDABLE	"D:\\GitHubProj\\Ta-Together\\TA\\TA.ico"
 
